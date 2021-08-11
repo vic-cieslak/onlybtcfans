@@ -1,4 +1,4 @@
-# quasar-firebase-auth (quasar2-firebase-auth)
+# Quasar 2 Firebase Auth and Storage Boilerplate (quasar2-firebase-auth)
 
 Boilerplate / project starter.
 
