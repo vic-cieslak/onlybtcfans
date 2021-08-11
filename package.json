@@ -6,13 +6,20 @@
   "author": "Wiktor Cieślak <wiktorcie@gmail.com>",
   "private": true,
   "scripts": {
+    "dev": "QENV=DEV quasar dev",
+    "dev:win": "cross-env QENV=DEV quasar dev",
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
+    "dotenv": "^10.0.0",
+    "firebase": "^8.9.1",
     "quasar": "^2.0.0",
-    "vuex": "^4.0.1"
+    "stylus": "^0.54.8",
+    "stylus-loader": "3.0.2",
+    "vuex": "^4.0.1",
+    "vuexfire": "^3.2.5"
   },
   "devDependencies": {
     "@quasar/app": "^3.0.0"

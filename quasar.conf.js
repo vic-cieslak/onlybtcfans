@@ -7,6 +7,7 @@
 // https://v2.quasar.dev/quasar-cli/quasar-conf-js
 
 const { configure } = require('quasar/wrappers');
+const enviromentConfiguration = require('./src/utils/environmentConfig.js')
 
 module.exports = configure(function (ctx) {
   return {
@@ -20,6 +21,7 @@ module.exports = configure(function (ctx) {
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli/boot-files
     boot: [
+      'firebaseConnection'
     ],
 
     // https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-css
@@ -66,6 +68,12 @@ module.exports = configure(function (ctx) {
       chainWebpack (/* chain */) {
         //
       },
+
+      scopeHoisting: true,
+
+      env: {
+        QENV: enviromentConfiguration(process.env.QENV)
+      }
     },
 
     // Full list of options: https://v2.quasar.dev/quasar-cli/quasar-conf-js#Property%3A-devServer
@@ -86,11 +94,13 @@ module.exports = configure(function (ctx) {
       // (like functional components as one of the examples),
       // you can manually specify Quasar components/directives to be available everywhere:
       //
-      // components: [],
-      // directives: [],
+      importStrategy: 'auto',
+
+      components: [],
+      directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Loading', 'Notify']
     },
 
     // animations: 'all', // --- includes all animations
