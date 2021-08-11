@@ -2,10 +2,12 @@
   <q-page v-if="currentUser">
     <div class="background-photo">
         <div class="default-background" v-if="showBackgroundPhoto()">
-            <q-img src="https://cdn.quasar.dev/img/material.png" style="height: 200px;"></q-img>
+            <q-img src="https://cdn.quasar.dev/img/material.png" style="height: 200px;">
+            </q-img>
         </div>
         <div class="user-background" v-else>
-            <q-img :src="currentUser.backgroundPhoto" style="height: 200px;"></q-img>
+            <q-img :src="currentUser.backgroundPhoto" style="height: 200px;">
+            </q-img>
         </div>
     </div>
     <div class="profile-container">
@@ -49,7 +51,6 @@ export default {
   },
   data () {
     return {
-      dog: ''
     }
   },
   created () {

@@ -3,60 +3,119 @@
     <q-form class="full-height" @submit="saveUserData">
         <div class="background-photo">
             <div class="default-background" v-if="showBackgroundPhoto()">
-                <q-img src="https://cdn.quasar.dev/img/material.png" style="height: 200px;" @click="showPhotoUpload('background')"></q-img>
+                <q-img
+                  src="https://cdn.quasar.dev/img/material.png"
+                  style="height: 200px;"
+                  @click="showPhotoUpload('background')"/>
             </div>
             <div class="user-background" v-else>
-                <q-img :src="currentUser.backgroundPhoto" style="height: 200px;" @click="showPhotoUpload('background')"></q-img>
+                <q-img
+                  :src="currentUser.backgroundPhoto"
+                  style="height: 200px;"
+                  @click="showPhotoUpload('background')"/>
             </div>
         </div>
         <div class="absolute-top q-mt-sm text-white text-center">
-            <q-icon class="q-mr-sm" color="white" name="edit" size="20px" @click="showPhotoUpload('profile')"></q-icon>Edit your background image</div>
+            <q-icon
+              class="q-mr-sm"
+              color="white"
+              name="edit"
+              size="20px"
+              @click="showPhotoUpload('profile')">
+            </q-icon>Edit your background image</div>
         <div class="profile-photo text-center" @click="showPhotoUpload('profile')">
             <div class="default-user-image column items-center" v-if="showDefaultPhoto()">
-                <q-avatar class="q-mb-sm" round="round" color="blue-grey-10" icon="person" font-size="110px" size="180px" text-color="white"></q-avatar><span class="text-caption text-blue-grey-10">Click to edit</span></div>
+              <q-avatar
+                class="q-mb-sm"
+                round="round"
+                color="blue-grey-10"
+                icon="person"
+                font-size="110px"
+                size="180px"
+                text-color="white">
+              </q-avatar>
+              <span class="text-caption text-blue-grey-10">
+                Click to edit
+              </span>
+            </div>
             <div class="user-image column items-center" v-else>
-                <q-avatar class="q-mb-sm shadow-5" size="180px" @click="showPhotoUpload('profile')">
+                <q-avatar
+                  class="q-mb-sm shadow-5"
+                  size="180px"
+                  @click="showPhotoUpload('profile')">
                     <q-img :src="currentUser.profilePhoto"></q-img>
-                </q-avatar><span class="text-blue-grey-10"><q-icon class="q-mr-sm" color="blue-grey-10" name="edit" size="16px"></q-icon>Click to edit</span></div>
+                </q-avatar>
+                  <span class="text-blue-grey-10">
+                    <q-icon
+                    class="q-mr-sm"
+                    color="blue-grey-10"
+                    name="edit"
+                    size="16px">
+                    </q-icon>
+                    Click to edit
+                  </span>
+            </div>
         </div>
         <section class="user-info">
             <h6 class="q-mt-none q-mb-md text-center">Edit Your Profile</h6>
-            <div class="row justify-between items-center q-mb-lg"><label class="col-3" for="fullName">Name</label>
-                <q-input class="col" id="fullName" v-model="fullName" borderless="borderless" dense="dense" type="text"></q-input>
+            <div class="row justify-between items-center q-mb-lg">
+              <label class="col-3" for="fullName">Name</label>
+                <q-input
+                  class="col"
+                  id="fullName"
+                  v-model="fullName"
+                  borderless="borderless"
+                  dense="dense"
+                  type="text"/>
             </div>
-            <div class="row justify-between items-center q-mb-lg"><label class="col-3" for="email">Email</label>
-                <q-input class="col" id="email" v-model="email" borderless="borderless" dense="dense" type="text"></q-input>
+            <div class="row justify-between items-center q-mb-lg">
+              <label class="col-3" for="email">Email</label>
+                <q-input
+                  class="col"
+                  id="email"
+                  v-model="email"
+                  borderless="borderless"
+                  dense="dense"
+                  type="text"/>
             </div>
-            <div class="row justify-between items-center q-mb-lg"><label class="col-3" for="mobile">Mobile</label>
-                <q-input class="col" id="mobile" v-model="mobile" borderless="borderless" dense="dense" hint="+1(###) ###-####" mask="+#(###) ###-####" type="text"></q-input>
+            <div class="row justify-between items-center q-mb-lg">
+              <label class="col-3" for="mobile">Mobile</label>
+                <q-input
+                  class="col"
+                  id="mobile"
+                  v-model="mobile"
+                  borderless="borderless"
+                  dense="dense"
+                  hint="+1(###) ###-####"
+                  mask="+#(###) ###-####"
+                  type="text"/>
             </div>
         </section>
         <div class="row justify-between q-my-lg q-px-md absolute-bottom">
-            <q-btn color="primary" label="CANCEL" style="min-width:6em;" @click="setEditUserDialog(false)"></q-btn>
-            <q-btn color="primary" type="submit" label="SAVE" style="min-width:6em;"></q-btn>
+            <q-btn
+              color="primary"
+              label="CANCEL"
+              style="min-width:6em;"
+              @click="setEditUserDialog(false)" />
+            <q-btn
+              color="primary"
+              type="submit"
+              label="SAVE"
+              style="min-width:6em;" />
         </div>
     </q-form>
-    <q-dialog v-model="photoUpload" transition-hide="scale" transition-show="scale" @before-hide="resetPhotoType">
-        <fbq-uploader
-          class="q-my-lg"
-          label="Please Upload a Photo"
-          :meta="meta"
-          :prefixPath="prefixPath"
-          @uploaded="uploadComplete"
-        ></fbq-uploader>
-    </q-dialog>
+    <q-dialog
+      v-model="photoUpload"
+      transition-hide="scale"
+      transition-show="scale"
+      @before-hide="resetPhotoType"/>
 </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import { createUploaderComponent } from 'quasar'
 export default {
   name: 'UserSettings',
-  mixins: [createUploaderComponent],
-  components: {
-    'fbq-uploader': () => import('../../../components/FBQUploader.vue')
-  },
   data () {
     const currentUser = this.$store.state.user.currentUser
     return {

@@ -12,6 +12,5 @@ export default ({ store, app }) => {
   })
 
   app.config.globalProperties.$fb = firebaseServices
-  // Vue.prototype.$fb = firebaseServices
   store.$fb = firebaseServices
 }
