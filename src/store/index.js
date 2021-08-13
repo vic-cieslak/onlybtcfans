@@ -1,4 +1,4 @@
-import { store } from 'quasar/wrappers'
+import { store as store_init } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import { vuexfireMutations } from 'vuexfire'
 
@@ -14,8 +14,8 @@ import user from './user'
  * async/await or return a Promise which resolves
  * with the Store instance.
  */
-
-export default store(function (/* { ssrContext } */) {
+let store = null
+export default store_init(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       auth,
