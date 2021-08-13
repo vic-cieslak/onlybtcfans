@@ -3,7 +3,7 @@
 
 Boilerplate / project starter.
 
-Live demo: https://xenodochial-clarke-616008.netlify.app
+Live demo: https://xenodochial-clarke-616008.netlify.app (uploader broker, work in progress)
 
 Quasar 2.0 integration with firebase auth and storage (user profiles/photo upload/login/register/password reset).
 
