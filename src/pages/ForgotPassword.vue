@@ -1,9 +1,14 @@
 <template>
   <q-page padding="padding">
     <q-form class="authentication q-gutter-y-md" ref="forgotPasswordForm" @submit="onSubmit">
-      <router-link to="/">
-          <q-img alt="Logo" src="/fp-logo.png"></q-img>
-      </router-link>
+        <router-link to="/">
+          <!-- <q-img
+            alt="Logo"
+            width='150px'
+            height='150px'
+            fit
+            src="~assets/sample-app-logo.png" /> -->
+        </router-link>
       <h4 class="q-mb-none">Forgot Password</h4>
       <div class="inst q-mb-lg">Please enter your email and we will send you a link to reset your password.</div>
       <q-input
