@@ -41,7 +41,7 @@ DEV_MEASUREMENT_ID=G-5FAS5LZ9W5
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
-quasar dev
+QENV=DEV quasar dev
 ```
 
 
