@@ -1,6 +1,9 @@
 # Quasar 2 Firebase Auth and Storage Boilerplate
 
+
 Boilerplate / project starter.
+
+Live demo: https://xenodochial-clarke-616008.netlify.app
 
 Quasar 2.0 integration with firebase auth and storage (user profiles/photo upload/login/register/password reset).
 
