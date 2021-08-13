@@ -44,10 +44,12 @@
 <script>
 import { mapGetters, mapMutations } from 'vuex'
 import { QSpinnerGears, QSpinnerRadio } from 'quasar'
+import UserSettings from './profile/UserSettings.vue'
+
 export default {
   name: 'Profile',
   components: {
-    'user-settings': () => import('./profile/UserSettings.vue')
+    UserSettings,
   },
   data () {
     return {

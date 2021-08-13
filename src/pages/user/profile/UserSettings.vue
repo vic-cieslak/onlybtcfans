@@ -200,7 +200,7 @@ export default {
 </script>
 <style lang="stylus">
   .user-settings
-    background-color $grey-3
+    background-color white
     .default-user-image
       cursor pointer
       color white
