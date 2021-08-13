@@ -47,7 +47,7 @@ QENV=DEV quasar dev
 
 ### Build the app for production
 ```bash
-quasar build
+QENV=PROD quasar build
 ```
 
 ### Customize the configuration
