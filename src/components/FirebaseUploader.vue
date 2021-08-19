@@ -7,7 +7,7 @@ import firebase from "firebase/app";
 export default createUploaderComponent({
   // defining the QUploader plugin here
 
-  name: "MyUploader", // your component's name
+  name: "FirebaseUploader", // your component's name
 
   props: {
     pathPrefix: {
