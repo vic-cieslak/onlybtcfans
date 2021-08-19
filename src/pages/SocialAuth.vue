@@ -6,8 +6,18 @@
         class="shadow-2 rounded-borders"> -->
     <div class="flex flex-center">
       <div class="q-pr-lg">
-        <h4 class='text-center q-pt-sm'>Mobile optimized Social Auth page</h4>
+        <h4 class='text-center q-pt-sm'>
+          Mobile optimized social auth page</h4>
         <h6 class='text-center'>web optimized coming soon</h6>
+        <div class="text-center">
+          <q-btn
+            type="a"
+            href="https://imgur.com/a/WpkPbzK"
+            target="_blank"
+            color="red-7"
+            icon-right="open_in_new"
+            label="inspired by Tinder" />
+        </div>
       </div>
       <div class="q-py-lg">
         <q-layout
@@ -83,7 +93,7 @@
                     <q-space />
                     </q-btn>
                 </div>
-                <div class='q-py-sm' style='color: white;'>
+                <div class='q-pt-sm' style='color: white;'>
                   <b>Trouble signing in?</b>
                 </div>
 
