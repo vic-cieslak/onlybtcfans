@@ -132,4 +132,7 @@ export default {
   .main
     &.blur-layout
       filter blur(5px)
+
+  .q-page
+    background: white
 </style>

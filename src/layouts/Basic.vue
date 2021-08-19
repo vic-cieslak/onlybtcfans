@@ -105,3 +105,9 @@ export default {
   }
 }
 </script>
+
+
+<style lang="stylus" scoped>
+  .q-page
+    background: white
+</style>
