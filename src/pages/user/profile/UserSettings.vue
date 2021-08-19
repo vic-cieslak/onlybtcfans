@@ -110,8 +110,22 @@
       transition-show="scale"
       @before-hide="resetPhotoType">
 
+        <!-- <FirebaseUploader
+          class="q-my-lg"
+          label="Please Upload a Photo"
+          color="primary"
+          square
+          :meta="meta"
+          :prefixPath="prefixPath"
+          @uploaded="uploadComplete"
+          auto-upload
+          accept=".jpg, image/*"
+          flat
+          bordered
+          style="max-width: 300px"
+        /> -->
+
         <FirebaseUploader
-          url="http://localhost:4444/upload"
           class="q-my-lg"
           label="Please Upload a Photo"
           color="primary"

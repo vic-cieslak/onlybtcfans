@@ -1,130 +1,160 @@
 <script>
+import { createUploaderComponent } from "quasar";
+import { computed, ref } from "vue";
+import firebase from "firebase/app";
 
-import { createUploaderComponent } from 'quasar'
-import { computed } from 'vue'
-
+// export a Vue component
 export default createUploaderComponent({
+  // defining the QUploader plugin here
 
-  name: 'FirebaseUploader',
+  name: "MyUploader", // your component's name
 
   props: {
-    meta: {
-      type: Object
+    pathPrefix: {
+      type: String,
+      default: "",
     },
-    prefixPath: {
-      type: String
-    }
-  },
-  emits: [
-    // ...your custom events name list
-  ],
-
-  data () {
-    return {
-      uploading: false,
-      filesUploading: []
-    }
   },
 
-  injectPlugin ({ props, emit, helpers }) {
+  emits: ["uploaded", "failed", "removed"],
+
+  injectPlugin({ props, emit, helpers }) {
     // can call any other composables here
     // as this function will run in the component's setup()
-
+    const storage = ref(firebase.storage().ref());
+    const activeTasks = ref([]);
     // [ REQUIRED! ]
     // We're working on uploading files
     const isUploading = computed(() => {
-      return this.uploading
-    })
+      // return <Boolean>
+    });
 
     // [ optional ]
     // Shows overlay on top of the
     // uploader signaling it's waiting
     // on something (blocks all controls)
     const isBusy = computed(() => {
-      return this.uploading
-    })
+      // return <Boolean>
+    });
 
     // [ REQUIRED! ]
     // Abort and clean up any process
     // that is in progress
-    function abort () {
+    function abort() {
       // ...
-    }
-
-    function updateComponent (index, snapshot, status = 'uploading') {
-      const file = this.files[index],
-        uploadSize = (typeof snapshot === 'object') ? snapshot.bytesTransferred : 0
-
-      // QUploaderBase private method to update file progress
-      this.__updateFile(file, status, uploadSize)
-    }
-
-    function uploadFileToFirestore (file) {
-      const { meta } = this,
-        { docRef, storageRef } = this.$fb,
-        index = this.filesUploading.length,
-        fileSuffix = file.type.split('/')[1],
-        uploadImageStorageRef = storageRef(`${this.prefixPath}${fileSuffix}`),
-        profileImageStorageRef = uploadImageStorageRef.put(file),
-        STATE_CHANGED = this.$fb.self().storage.TaskEvent.STATE_CHANGED
-
-      return new Promise((resolve, reject) => {
-        // Firebase UploadTask Event
-        profileImageStorageRef.on(
-          STATE_CHANGED,
-          (snapshot) => {
-            updateComponent(index, snapshot)
-          },
-          (err) => {
-            this.$q.notify({
-              color: 'negative',
-              message: `There was a problem with the upload. ${err}`
-            })
-            updateComponent(index, 0, 'failed')
-            reject()
-          },
-          () => {
-            this.uploadedFiles = this.uploadedFiles.concat(this.files)
-            this.queuedFiles = []
-            this.filesUploading = []
-            this.files.forEach(async file => {
-              updateComponent(index, 0, 'uploaded')
-              const link = await profileImageStorageRef.snapshot.ref.getDownloadURL()
-              docRef('users', meta.id).update({ [`${meta.photoType}Photo`]: link })
-              this.$emit('uploaded', { files: [file.name] })
-            })
-            resolve()
-          }
-        )
-      })
     }
 
     // [ REQUIRED! ]
     // Start the uploading process
-    function upload () {
-      if (this.canUpload === false) {
-        return
+    function upload() {
+      if (props.disable || !helpers.queuedFiles.value.length) {
+        return;
+      }
+      helpers.queuedFiles.value.forEach(async (file) => {
+        await __uploadSingleFile(file);
+      });
+    }
+    function __uploadSingleFile(file) {
+      let pathPrefix = props.pathPrefix || "";
+      // const fileRef = storage.value.child(pathPrefix + file.name)
+      const fileRef = storage.value.child(`${pathPrefix}/${file.name}`);
+      helpers.updateFileStatus(file, "uploading", 0);
+      const uploadTask = fileRef.put(file);
+      activeTasks.value.push(uploadTask);
+      // Listen for state changes, errors, and completion of the upload.
+      uploadTask.on(
+        firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
+        (snapshot) => {
+          // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+          if (file.__status !== "failed") {
+            const loaded = Math.min(
+              snapshot.totalBytes,
+              snapshot.bytesTransferred
+            );
+            helpers.uploadedSize.value += loaded - file.__uploaded;
+
+            helpers.updateFileStatus(file, "uploading", loaded);
+          }
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          helpers.queuedFiles.value.push(file);
+          helpers.updateFileStatus(file, "failed");
+          emit("failed", { file, error });
+          helpers.uploadedSize.value -= file.__uploaded;
+          activeTasks.value = activeTasks.value.filter((t) => t !== uploadTask);
+        },
+        () => {
+          // Upload completed successfully, now we can get the download URL
+          uploadTask.snapshot.ref
+            .getDownloadURL()
+            .then((downloadURL) => {
+              const fullPath = uploadTask.snapshot.ref.fullPath;
+              const fileName = uploadTask.snapshot.ref.name;
+              helpers.uploadedFiles.value.push(file);
+              helpers.updateFileStatus(file, "uploaded");
+              let uploadTime = _.round(new Date().getTime() / 1000);
+              console.log("TCL: __uploadSingleFile -> uploadTime", uploadTime);
+              let [fileSize, fileType] = [file.size, file.type];
+              console.log(
+                downloadURL,
+                fileName,
+                fileSize,
+                fileType,
+                fullPath,
+                uploadTime
+              );
+              emit("uploaded", {
+                downloadURL,
+                fileName,
+                fileSize,
+                fileType,
+                fullPath,
+                uploadTime,
+              });
+              helpers.uploadedSize.value += file.size - file.__uploaded;
+              // helpers.uploadedSize.value = 0;
+            })
+            .catch((error) => {
+              emit("failed", { file, error });
+            });
+          activeTasks.value = activeTasks.value.filter((t) => t !== uploadTask);
+        }
+      );
+    }
+
+    function removeFile(file) {
+      if (props.disable) {
+        return;
       }
 
-      this.uploading = true
-      this.queuedFiles.forEach(file => {
-        this.filesUploading.push(uploadFileToFirestore(file))
-      })
+      if (file.__status === "uploaded") {
+        helpers.uploadedFiles.value = helpers.uploadedFiles.value.filter(
+          (f) => f.name !== file.name
+        );
 
-      Promise.all(this.filesUploading)
-        .then(() => {
-          this.uploading = false
-        })
-        .catch(err => {
-          this.$q.notify({
-            color: 'negative',
-            message: `One or more of your files failed to upload. ${err}`
-          })
-        })
-        .finally(() => {
-          this.reset()
-          this.filesUploading = []
-        })
+        // As of Quasar v2 beta7 uploadSize cannot be taken out of helpers/state. So removeFile won't be able to change blue header the label on top.
+        helpers.uploadSize.value -= file.__uploaded;
+      } else if (file.__status === "uploading") {
+        file.__abort();
+      } else {
+        helper.uploadSize.value -= file.size;
+      }
+
+      helpers.files.value = helpers.files.value.filter((f) => {
+        if (f.name !== file.name) {
+          return true;
+        }
+
+        f._img !== void 0 && window.URL.revokeObjectURL(f._img.src);
+
+        return false;
+      });
+      helpers.queuedFiles.value = helpers.queuedFiles.value.filter(
+        (f) => f.name !== file.name
+      );
+      emit("removed", [file]);
     }
 
     return {
@@ -132,9 +162,9 @@ export default createUploaderComponent({
       isBusy,
 
       abort,
-      upload
-    }
-  }
-})
+      upload,
+    };
+  },
+});
 </script>
 
