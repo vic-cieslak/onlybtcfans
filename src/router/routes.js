@@ -10,6 +10,13 @@ const routes = [
     ]
   },
   {
+    path: '/social_auth',
+    component: () => import('layouts/Empty.vue'),
+    children: [
+      { path: '', component: () => import('pages/SocialAuth.vue') }
+    ]
+  },
+  {
     path: '/auth',
     component: () => import('layouts/Basic.vue'),
     children: [
