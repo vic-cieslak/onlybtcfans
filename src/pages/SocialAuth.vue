@@ -1,9 +1,4 @@
 <template>
-    <!-- <q-layout
-        view="lhh LpR lff"
-        container
-        style="height: 653px; width: 375"
-        class="shadow-2 rounded-borders"> -->
     <div class="flex flex-center">
       <div class="q-pr-lg">
         <h4 class='text-center q-pt-sm'>
@@ -121,7 +116,7 @@ export default defineComponent({
     function alert () {
       $q.dialog({
         title: '<div class="text-center">Tinder sign in</div>',
-        message: '<img src="https://i.imgur.com/0rr2hcY.jpg" width="373px" height="600px"/>',
+        message: '<img src="https://i.imgur.com/0rr2hcY.jpg" width="363px" height="620px"/>',
         html: true
       }).onOk(() => {
         // console.log('OK')
