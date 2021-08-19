@@ -108,14 +108,50 @@
       v-model="photoUpload"
       transition-hide="scale"
       transition-show="scale"
-      @before-hide="resetPhotoType"/>
+      @before-hide="resetPhotoType">
+
+        <FirebaseUploader
+          url="http://localhost:4444/upload"
+          class="q-my-lg"
+          label="Please Upload a Photo"
+          color="primary"
+          square
+          :meta="meta"
+          :prefixPath="prefixPath"
+          @uploaded="uploadComplete"
+          auto-upload
+          accept=".jpg, image/*"
+          flat
+          bordered
+          style="max-width: 300px"
+        />
+
+        <!--
+
+
+          <fbq-uploader
+          class="q-my-lg"
+          label="Please Upload a Photo"
+          :meta="meta"
+          :prefixPath="prefixPath"
+          @uploaded="uploadComplete"
+        ></fbq-uploader>
+
+
+        -->
+    </q-dialog>
 </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import FirebaseUploader from '../../../components/FirebaseUploader.vue'
+
 export default {
   name: 'UserSettings',
+  components: {
+    FirebaseUploader,
+  },
   data () {
     const currentUser = this.$store.state.user.currentUser
     return {
