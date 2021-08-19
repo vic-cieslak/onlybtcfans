@@ -49,6 +49,11 @@ export const loginUser = async function ($root, data) {
   return $fb.loginWithEmail(email, password)
 }
 
+export const facebookLoginUser = async function ($root) {
+  const $fb = this.$fb
+  return $fb.loginWithFacebook()
+}
+
 /**
  * @returns {function} - Firebase services function:
  * src/services/firebase/email.js > logoutUser

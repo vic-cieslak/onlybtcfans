@@ -49,6 +49,7 @@
                     class="full-width"
                     text-color='grey-8'
                     color="white"
+                    @click="facebookLoginUser()"
                     >
                   <q-icon left color='blue' name='fab fa-facebook' />
                     <q-space />
@@ -110,9 +111,13 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex'
 
 export default defineComponent({
-  name: 'PageLoginRegister'
+  name: 'PageSocialAuth',
+  methods: {
+    ...mapActions('auth', ['facebookLoginUser']),
+  }
 })
 </script>
 
