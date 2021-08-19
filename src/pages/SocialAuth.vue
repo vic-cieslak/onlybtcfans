@@ -8,7 +8,6 @@
       <div class="q-pr-lg">
         <h4 class='text-center q-pt-sm'>
           Mobile optimized social auth page</h4>
-        <h6 class='text-center'>web optimized coming soon</h6>
         <div class="text-center">
           <q-btn
             color="red-7"
