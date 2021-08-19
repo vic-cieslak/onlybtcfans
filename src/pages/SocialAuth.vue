@@ -66,6 +66,7 @@
                     style="height:50px;"
                     text-color='grey-8'
                     color="white"
+                    @click="googleLoginUser()"
                     >
                     <q-icon
                       left
@@ -116,7 +117,7 @@ import { mapActions } from 'vuex'
 export default defineComponent({
   name: 'PageSocialAuth',
   methods: {
-    ...mapActions('auth', ['facebookLoginUser']),
+    ...mapActions('auth', ['facebookLoginUser', 'googleLoginUser']),
   }
 })
 </script>
