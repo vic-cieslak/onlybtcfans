@@ -11,12 +11,11 @@
         <h6 class='text-center'>web optimized coming soon</h6>
         <div class="text-center">
           <q-btn
-            type="a"
-            href="https://imgur.com/a/WpkPbzK"
-            target="_blank"
             color="red-7"
+            @click="alert"
             icon-right="open_in_new"
             label="inspired by Tinder" />
+
         </div>
       </div>
       <div class="q-py-lg">
@@ -113,9 +112,28 @@
 <script>
 import { defineComponent } from 'vue';
 import { mapActions } from 'vuex'
+import { useQuasar } from 'quasar'
 
 export default defineComponent({
   name: 'PageSocialAuth',
+  setup () {
+    const $q = useQuasar()
+
+    function alert () {
+      $q.dialog({
+        title: '<div class="text-center">Tinder sign in</div>',
+        message: '<img src="https://i.imgur.com/0rr2hcY.jpg" width="373px" height="600px"/>',
+        html: true
+      }).onOk(() => {
+        // console.log('OK')
+      }).onCancel(() => {
+        // console.log('Cancel')
+      }).onDismiss(() => {
+        // console.log('I am triggered on both OK and Cancel')
+      })
+    }
+    return { alert }
+  },
   methods: {
     ...mapActions('auth', ['facebookLoginUser', 'googleLoginUser']),
   }
