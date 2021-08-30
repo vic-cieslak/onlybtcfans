@@ -2,6 +2,7 @@
 import { createUploaderComponent } from "quasar";
 import { computed, ref } from "vue";
 import firebase from "firebase/app";
+import { docRef } from '../services/firebase/db.js'
 
 // export a Vue component
 export default createUploaderComponent({
@@ -10,7 +11,10 @@ export default createUploaderComponent({
   name: "FirebaseUploader", // your component's name
 
   props: {
-    pathPrefix: {
+    meta: {
+      type: Object
+    },
+    prefixPath: {
       type: String,
       default: "",
     },
@@ -55,9 +59,11 @@ export default createUploaderComponent({
       });
     }
     function __uploadSingleFile(file) {
-      let pathPrefix = props.pathPrefix || "";
-      // const fileRef = storage.value.child(pathPrefix + file.name)
-      const fileRef = storage.value.child(`${pathPrefix}/${file.name}`);
+
+      let prefixPath = props.prefixPath || "";
+      let fileSuffix = file.type.split('/')[1]
+      const fileRef = storage.value.child(`${prefixPath}/photo.${fileSuffix}`);
+
       helpers.updateFileStatus(file, "uploading", 0);
       const uploadTask = fileRef.put(file);
       activeTasks.value.push(uploadTask);
@@ -90,31 +96,8 @@ export default createUploaderComponent({
           uploadTask.snapshot.ref
             .getDownloadURL()
             .then((downloadURL) => {
-              const fullPath = uploadTask.snapshot.ref.fullPath;
-              const fileName = uploadTask.snapshot.ref.name;
-              helpers.uploadedFiles.value.push(file);
-              helpers.updateFileStatus(file, "uploaded");
-              let uploadTime = _.round(new Date().getTime() / 1000);
-              console.log("TCL: __uploadSingleFile -> uploadTime", uploadTime);
-              let [fileSize, fileType] = [file.size, file.type];
-              console.log(
-                downloadURL,
-                fileName,
-                fileSize,
-                fileType,
-                fullPath,
-                uploadTime
-              );
-              emit("uploaded", {
-                downloadURL,
-                fileName,
-                fileSize,
-                fileType,
-                fullPath,
-                uploadTime,
-              });
-              helpers.uploadedSize.value += file.size - file.__uploaded;
-              // helpers.uploadedSize.value = 0;
+              docRef('users', props.meta.id).update({ [`${props.meta.photoType}Photo`]: downloadURL })
+              emit("uploaded", { downloadURL } )
             })
             .catch((error) => {
               emit("failed", { file, error });

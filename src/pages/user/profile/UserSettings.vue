@@ -110,21 +110,6 @@
       transition-show="scale"
       @before-hide="resetPhotoType">
 
-        <!-- <FirebaseUploader
-          class="q-my-lg"
-          label="Please Upload a Photo"
-          color="primary"
-          square
-          :meta="meta"
-          :prefixPath="prefixPath"
-          @uploaded="uploadComplete"
-          auto-upload
-          accept=".jpg, image/*"
-          flat
-          bordered
-          style="max-width: 300px"
-        /> -->
-
         <FirebaseUploader
           class="q-my-lg"
           label="Please Upload a Photo"
@@ -140,19 +125,6 @@
           style="max-width: 300px"
         />
 
-        <!--
-
-
-          <fbq-uploader
-          class="q-my-lg"
-          label="Please Upload a Photo"
-          :meta="meta"
-          :prefixPath="prefixPath"
-          @uploaded="uploadComplete"
-        ></fbq-uploader>
-
-
-        -->
     </q-dialog>
 </div>
 </template>
@@ -186,7 +158,7 @@ export default {
     },
     prefixPath () {
       const id = this.currentUser.id,
-        path = `${id}/${this.photoType}Photo/${this.photoType}Photo.`
+        path = `${id}/${this.photoType}Photo/`
       return path
     }
   },
@@ -236,12 +208,10 @@ export default {
       this.photoType = type
     },
 
-    uploadComplete (info) {
-      const fileNames = []
-      info.files.forEach(file => fileNames.push(file))
+    uploadComplete () {
       this.photoUpload = false
       this.$q.notify({
-        message: `Successfully uploaded your photo: ${fileNames}`,
+        message: 'Successfully uploaded your photo.',
         color: 'positive'
       })
     }
