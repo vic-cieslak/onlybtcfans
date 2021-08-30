@@ -42,7 +42,7 @@
                     class="full-width"
                     text-color='grey-8'
                     color="white"
-                    @click="facebookLoginUser()"
+                    @click="facebookStub()"
                     >
                   <q-icon left color='blue' name='fab fa-facebook' />
                     <q-space />
@@ -130,6 +130,19 @@ export default defineComponent({
   },
   methods: {
     ...mapActions('auth', ['facebookLoginUser', 'googleLoginUser']),
+    facebookStub() {
+      this.$q.dialog({
+        title: 'Facebook login',
+        message: 'facebook integration is work in progress. Please check google login.',
+        html: true
+      }).onOk(() => {
+        // console.log('OK')
+      }).onCancel(() => {
+        // console.log('Cancel')
+      }).onDismiss(() => {
+        // console.log('I am triggered on both OK and Cancel')
+      })
+    }
   }
 
 })
