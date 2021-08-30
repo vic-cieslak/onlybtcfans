@@ -8,6 +8,7 @@ export default class User {
    * @param {String} fullName - The user's full name.
    * @param {String} mobile - the user's mobile number.
    * @param {String} profilePhoto - A generated URL from Google Storage.
+   * @param {String} created_at - timestamp the user registered.
   */
   id = ''
   backgroundPhoto = ''
@@ -15,6 +16,7 @@ export default class User {
   fullName = ''
   mobile = ''
   profilePhoto = ''
+  created_at = ''
 
   /**
    * @param  {Object} args - User arguments supplied during

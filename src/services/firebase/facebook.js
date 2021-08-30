@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 
+// TODO DRY with google
 /**
  * https://firebase.google.com/docs/auth/web/facebook-login?hl=en#web-v8
  * https://firebase.google.com/docs/reference/js/firebase.auth.Auth#signInWithPopup
@@ -16,12 +17,11 @@ export const loginWithFacebook = () => {
     console.log(credential)
     // The signed-in user info.
     var user = result.user;
-    console.log(user)
 
     // This gives you a Facebook Access Token.
     //You can use it to access the Facebook API.
-    var accessToken = credential.accessToken;
-    console.log(accessToken)
+    // var accessToken = credential.accessToken;
+    return user
     // ...
   })
   .catch((error) => {

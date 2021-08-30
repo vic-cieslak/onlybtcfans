@@ -10,11 +10,12 @@ import { firestoreAction } from 'vuexfire'
 import User from '../../models/User.js'
 import { docRef } from '../../services/firebase/db.js'
 import { Notify } from 'quasar'
+import 'firebase/firestore';
 
 export const addUserToUsersCollection = function (state, userRef) {
   const
-    { email } = state,
-    user = new User({ email })
+    { email, id, created_at } = state,
+    user = new User({ email, id, created_at })
   return userRef.set(user)
 }
 
@@ -52,14 +53,34 @@ export const loginUser = async function ($root, data) {
 export const facebookLoginUser = async function ($root) {
   const $fb = this.$fb
   await $fb.loginWithFacebook()
-  this.$router.push({
-    path: '/user/profile'
-  })
+
+  // const id = user.uid
+  // const email = user.email
+
+  // const userRef = docRef('users', id)
+  // addUserToUsersCollection({ email }, userRef)
+
+  // this.$router.push({
+  //   path: '/user/profile'
+  // })
 }
 
 export const googleLoginUser = async function ($root) {
   const $fb = this.$fb
-  await $fb.loginWithGoogle()
+  const user = await $fb.loginWithGoogle()
+
+  const id = user.uid
+  const email = user.email
+  const doc = await docRef('users', id).get()
+
+  if ( doc.exists == false) { // create firebase profile data document
+    var created_at = $fb.timestamp()
+    // console.log('created_at: ', created_at)
+    const userRef = docRef('users', id)
+    console.log('creating user profile...')
+    addUserToUsersCollection({ email, id, created_at }, userRef)
+  }
+
   this.$router.push({
     path: '/user/profile'
   })
@@ -73,7 +94,10 @@ export const logoutUser = async function ({ commit }) {
   try {
     await firestoreAction(({ unbindFirestoreRef }) => { unbindFirestoreRef('currentUser') })
     await this.$fb.logoutUser()
-    commit('common/setDrawerOpen', false, { root: true })
+
+    // no idea what was this for
+    // commit('common/setDrawerOpen', false, { root: true })
+
   } catch (err) {
     Notify.create({
       type: 'webapp_error',
