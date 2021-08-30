@@ -33,7 +33,8 @@ export const createNewUser = async function ($root, data) {
   const fbAuthResponse = await $fb.createUserWithEmail(email, password)
   const id = fbAuthResponse.user.uid
   const userRef = docRef('users', id)
-  return addUserToUsersCollection({ email }, userRef)
+  var created_at = $fb.timestamp()
+  return addUserToUsersCollection({ email, id, created_at }, userRef)
 }
 
 /**
