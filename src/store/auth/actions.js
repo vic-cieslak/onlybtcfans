@@ -51,12 +51,18 @@ export const loginUser = async function ($root, data) {
 
 export const facebookLoginUser = async function ($root) {
   const $fb = this.$fb
-  return $fb.loginWithFacebook()
+  await $fb.loginWithFacebook()
+  this.$router.push({
+    path: '/user/profile'
+  })
 }
 
 export const googleLoginUser = async function ($root) {
   const $fb = this.$fb
-  return $fb.loginWithGoogle()
+  await $fb.loginWithGoogle()
+  this.$router.push({
+    path: '/user/profile'
+  })
 }
 
 /**
@@ -81,3 +87,11 @@ export function routeUserToAuth () {
     path: '/auth/login'
   })
 }
+
+export function routeUserToProfile () {
+  this.$router.push({
+    path: '/user/profile'
+  })
+}
+
+

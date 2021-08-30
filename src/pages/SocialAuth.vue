@@ -131,6 +131,7 @@ export default defineComponent({
   methods: {
     ...mapActions('auth', ['facebookLoginUser', 'googleLoginUser']),
   }
+
 })
 </script>
 
