@@ -16,6 +16,7 @@ export const addUserToUsersCollection = function (state, userRef) {
   const
     { email, id, created_at } = state,
     user = new User({ email, id, created_at })
+
   return userRef.set(user)
 }
 
