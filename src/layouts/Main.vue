@@ -28,6 +28,7 @@
         <q-item
           clickable
           v-ripple
+          to='/'
           :active="link === 'home'"
           @click="link = 'home'"
           active-class="text-black"
@@ -44,6 +45,7 @@
         <q-item
           clickable
           v-ripple
+          to='/my/notifications'
           :active="link === 'notifications'"
           @click="link = 'notifications'"
           active-class="text-black">
@@ -59,6 +61,7 @@
         <q-item
           clickable
           v-ripple
+          to='/my/chats'
           :active="link === 'messages'"
           @click="link = 'messages'"
           active-class="text-black">
@@ -74,6 +77,7 @@
         <q-item
           clickable
           v-ripple
+          to='/bookmarks'
           :active="link === 'bookmarks'"
           @click="link = 'bookmarks'"
           active-class="text-black">
@@ -89,6 +93,7 @@
         <q-item
           clickable
           v-ripple
+          to='/my/lists'
           :active="link === 'lists'"
           @click="link = 'lists'"
           active-class="text-black">
@@ -104,6 +109,7 @@
         <q-item
           clickable
           v-ripple
+          to='/my/subscriptions'
           :active="link === 'subscriptions'"
           @click="link = 'subscriptions'"
           active-class="text-black">
@@ -222,7 +228,7 @@ export default {
 
     return {
       leftDrawerOpen,
-      link: ref('home'),
+      link: ref(''),
       text: ref(''),
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
