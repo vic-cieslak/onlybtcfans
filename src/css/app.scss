@@ -12,3 +12,40 @@ a {
   // &:before:
   //   opacity .9!important
 }
+
+/*!
+* Hover.css (http://ianlunn.co.uk/)
+* Version: 1.0.5
+* Author: Ian Lunn @IanLunn
+* Author URL: http://ianlunn.co.uk/
+* Github: https://github.com/IanLunn/Hover
+
+* Made available under a MIT License:
+* http://www.opensource.org/licenses/mit-license.php
+
+* Hover.css Copyright Ian Lunn 2014.
+
+https://jsfiddle.net/charlesy/R9w9J/
+
+*/
+
+/* 2D TRANSITIONS */
+
+/* Grow */
+.grow {
+  display: inline-block;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+.grow:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
