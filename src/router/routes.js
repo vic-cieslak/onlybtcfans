@@ -31,6 +31,14 @@ const routes = [
         path: '/posts/create',
         component: () => import('pages/CreatePost.vue')
       },
+      {
+        path: '/user/profile',
+        name: 'UserProfile',
+        component: () => import('pages/user/Profile.vue'),
+        meta: {
+          requiresAuth: true
+        }
+      }
     ]
   },
   {
@@ -61,20 +69,20 @@ const routes = [
       }
     ]
   },
-  {
-    path: '/user',
-    component: () => import('layouts/User.vue'),
-    children: [
-      {
-        path: 'profile',
-        name: 'UserProfile',
-        component: () => import('pages/user/Profile.vue'),
-        meta: {
-          requiresAuth: true
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/user',
+  //   component: () => import('layouts/User.vue'),
+  //   children: [
+  //     {
+  //       path: 'profile',
+  //       name: 'UserProfile',
+  //       component: () => import('pages/user/Profile.vue'),
+  //       meta: {
+  //         requiresAuth: true
+  //       }
+  //     }
+  //   ]
+  // },
 
   // Always leave this as last one,
   // but you can also remove it

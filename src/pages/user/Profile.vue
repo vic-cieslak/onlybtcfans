@@ -15,11 +15,13 @@
             <div class="default-user-image" v-if="showDefaultPhoto()">
                 <q-avatar round="round" color="blue-grey-10" icon="person" font-size="100px" size="120px" text-color="white"></q-avatar>
             </div>
-            <div class="user-image column items-center" v-else>
+            <div class="user-image column q-pl-lg" v-else>
                 <q-avatar class="q-mb-sm shadow-5" size="140px">
                     <q-img :src="currentUser.profilePhoto"></q-img>
                 </q-avatar>
             </div>
+            <q-btn class="q-ma-md" round="round" color="primary" icon="edit" @click="setEditUserDialog(true); setBlur()"/>
+
         </div>
         <div class="text-weight-bold text-h6">{{ getUserData('fullName') }}</div>
         <div class="user-info q-mt-lg">
@@ -34,7 +36,6 @@
         </div>
     </div>
 
-    <q-btn class="fixed-bottom-right q-ma-md" round="round" color="primary" icon="edit" @click="setEditUserDialog(true); setBlur()"></q-btn>
     <q-dialog v-model="editUserDialog" full-height="full-height" persistent="persistent" @before-hide="setBlur">
         <user-settings></user-settings>
     </q-dialog>

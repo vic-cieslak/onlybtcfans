@@ -125,6 +125,7 @@
         <q-item
           clickable
           v-ripple
+          to="/user/profile"
           :active="link === 'profile'"
           @click="link = 'profile'"
           active-class="text-black"
