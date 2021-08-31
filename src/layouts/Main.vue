@@ -155,7 +155,7 @@
 
         <q-item class='q-pl-sm q-pt-lg'>
           <q-btn
-
+            to='/posts/create'
             style="width: 300px; height: 45px"
             unelevated
             align="between"
