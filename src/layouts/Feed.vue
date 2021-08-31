@@ -14,17 +14,6 @@
       </q-toolbar>
     </q-header>
 
-
-
-
-    <!-- <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered> -->
-      <!-- drawer content -->
-      <!-- <q-avatar class='q-pa-lg grow'> -->
-        <!-- <img src="https://cdn.quasar.dev/img/avatar.png"> -->
-      <!-- </q-avatar> -->
-    <!-- </q-drawer> -->
-
-
     <q-drawer
       v-model="leftDrawerOpen"
       show-if-above
@@ -250,4 +239,9 @@ export default {
   color: grey
 .menu-items
   font-size: 22px
+body.desktop
+  .q-hoverable:hover
+    > .q-focus-helper
+      background-color: $primary
+    color: $primary
 </style>
