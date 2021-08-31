@@ -2,6 +2,9 @@ const routes = [
   {
     path: '/',
     component: () => import('src/layouts/Main.vue'),
+    meta: {
+      requiresAuth: true
+    },
     children: [
       {
         path: '',
@@ -35,9 +38,6 @@ const routes = [
         path: '/user/profile',
         name: 'UserProfile',
         component: () => import('pages/user/Profile.vue'),
-        meta: {
-          requiresAuth: true
-        }
       }
     ]
   },
