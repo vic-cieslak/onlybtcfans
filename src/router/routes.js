@@ -1,12 +1,36 @@
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/Feed.vue'),
+    component: () => import('src/layouts/Main.vue'),
     children: [
       {
         path: '',
         component: () => import('pages/Index.vue')
-      }
+      },
+      {
+        path: '/my/notifications',
+        component: () => import('pages/Notifications.vue')
+      },
+      {
+        path: '/my/chats',
+        component: () => import('pages/Chats.vue')
+      },
+      {
+        path: '/bookmarks',
+        component: () => import('pages/Bookmarks.vue')
+      },
+      {
+        path: '/my/lists',
+        component: () => import('pages/Lists.vue')
+      },
+      {
+        path: '/my/subscriptions',
+        component: () => import('pages/Subscriptions.vue')
+      },
+      {
+        path: '/posts/create',
+        component: () => import('pages/CreatePost.vue')
+      },
     ]
   },
   {

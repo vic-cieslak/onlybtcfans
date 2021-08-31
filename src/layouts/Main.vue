@@ -169,6 +169,20 @@
 
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
       <!-- drawer content -->
+
+      <q-input
+        class='q-pa-md'
+        bottom-slots
+        color="primary"
+        v-model="text"
+        clearable
+        outlined
+        label="Search posts">
+
+        <template v-slot:append>
+          <q-icon name="search" />
+        </template>
+      </q-input>
     </q-drawer>
 
 
@@ -209,6 +223,7 @@ export default {
     return {
       leftDrawerOpen,
       link: ref('home'),
+      text: ref(''),
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
