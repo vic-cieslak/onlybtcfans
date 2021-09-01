@@ -370,8 +370,8 @@
 
 
 
+    <!-- right column search and suggestions -->
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-      <!-- drawer content -->
 
       <q-input
         class='q-pa-md'
@@ -386,6 +386,30 @@
           <q-icon name="search" />
         </template>
       </q-input>
+
+      <div class="q-pt-md">
+
+        <q-btn
+          flat
+          color="grey-7"
+          icon="eva-pricetags-outline" />
+
+        <q-btn
+          flat
+          color="grey-7"
+          icon="eva-refresh-outline" />
+
+        <q-btn
+          flat
+          color="grey-7"
+          icon="eva-arrow-ios-back-outline" />
+
+        <q-btn
+          flat
+          color="grey-7"
+          icon="eva-arrow-ios-forward-outline" />
+      </div>
+
     </q-drawer>
 
 
@@ -426,7 +450,7 @@ export default {
 
     return {
       leftDrawerOpen,
-      drawerLeft: ref(true),
+      drawerLeft: ref(false),
       link: ref(''),
       text: ref(''),
       toggleLeftDrawer () {
