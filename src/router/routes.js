@@ -7,7 +7,7 @@ const routes = [
     },
     children: [
       {
-        path: '',
+        path: '/feed',
         component: () => import('pages/Feed.vue')
       },
       {

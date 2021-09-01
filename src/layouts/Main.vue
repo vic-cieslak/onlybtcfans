@@ -25,12 +25,13 @@
       </q-avatar>
 
       <q-list padding class="menu-list q-pt-lg q-pl-sm">
+
         <q-item
           clickable
           v-ripple
-          to='/'
-          :active="link === 'home'"
-          @click="link = 'home'"
+          to='/feed'
+          :active="link === 'feed'"
+          @click="link = 'feed'"
           active-class="text-black"
           >
           <q-item-section avatar>
