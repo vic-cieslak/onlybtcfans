@@ -81,24 +81,6 @@
         <router-link class="text-primary" to="forgotPassword">Forgot Password?</router-link>
       </p>
 
-      <q-input
-        v-if="isRegistration"
-        lazy-rules="lazy-rules"
-        outlined="outlined"
-        autocomplete="new-password"
-        color="primary"
-        data-cy="verifyPassword"
-        label="VERIFY PASSWORD"
-        v-model="passwordMatch"
-        :rules="[val => !!val || '*Field is required', val => val === password || '*Passwords don\'t match']"
-        :type="isPwd ? 'password' : 'text'"
-        @keyup.enter="onSubmit(); $event.target.blur()"
-      >
-        <template v-slot:append>
-          <q-icon class="cursor-pointer" :name="isPwd ? 'visibility_off' : 'visibility'" @click="isPwd = !isPwd" />
-        </template>
-      </q-input>
-
       <q-btn
         class="full-width q-mt-md"
         rounded
