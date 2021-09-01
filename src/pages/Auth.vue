@@ -1,6 +1,54 @@
 <template>
   <q-page padding>
-    <h5 class="text-center">{{ getAuthType }}</h5>
+    <h5 class="text-center">Logo here</h5>
+    <h6 class="text-center text-caption">Sign up to earn bitcoin and interact with your fans!</h6>
+
+    <div class="row justify-center">
+      <div class='col-12 text-center q-py-sm q-px-lg'>
+        <q-btn
+          unelevated
+          rounded
+          class="authentication"
+          style="height:50px;"
+          text-color='white'
+          color="grey-5"
+          @click="googleLoginUser()"
+          >
+          <q-icon
+            left
+            class='fa-google-g-new'
+            name='fab fa-google' />
+          <q-space />
+          Sign in with Google
+          <q-space />
+        </q-btn>
+      </div>
+    </div>
+
+    <div class="row justify-center">
+      <div class='col-12 text-center q-py-sm q-px-lg'>
+        <q-btn
+          unelevated
+          rounded
+          class="authentication"
+          style="height:50px;"
+          text-color='white'
+          color="blue-6"
+          @click="googleLoginUser()"
+          >
+          <q-icon
+            left
+            color="white"
+            name='fab fa-twitter' />
+          <q-space />
+          Sign in with Twitter
+          <q-space />
+        </q-btn>
+      </div>
+    </div>
+
+    <div class="text-center q-py-sm text-grey-7">OR</div>
+
     <q-form class="authentication q-gutter-y-md" ref="emailAuthenticationForm" @submit="onSubmit">
       <q-input
         v-model="email"
@@ -29,6 +77,10 @@
           <q-icon class="cursor-pointer" :name="isPwd ? 'visibility_off' : 'visibility'" @click="isPwd = !isPwd" />
         </template>
       </q-input>
+      <p class="q-ma-none text-center" v-if="!isRegistration">
+        <router-link class="text-primary" to="forgotPassword">Forgot Password?</router-link>
+      </p>
+
       <q-input
         v-if="isRegistration"
         lazy-rules="lazy-rules"
@@ -46,23 +98,36 @@
           <q-icon class="cursor-pointer" :name="isPwd ? 'visibility_off' : 'visibility'" @click="isPwd = !isPwd" />
         </template>
       </q-input>
+
       <q-btn
         class="full-width q-mt-md"
+        rounded
+        style='height: 50px'
         color="primary"
         data-cy="submit"
         type="submit"
         :label="getAuthType"
       >
       </q-btn>
+
+      <div v-if="isRegistration">
+        <p class="q-mt-md q-mb-none text-center">
+          By signing up you agree to our <br>
+          Terms of Service and Privacy Policy, and confirm that you are at least 18 years old.
+
+        </p>
+
+        <p class="q-mt-md q-mb-none text-center">
+          Already have an account?
+        </p>
+      </div>
       <p class="q-mt-md q-mb-none text-center">
-          <router-link class="text-primary" :to="routeAuthentication">
-            <span v-if="isRegistration">Need to login?</span>
+          <router-link class="text-primary text-bold" :to="routeAuthentication">
+            <span v-if="isRegistration">Login</span>
             <span v-else>Need to create an account?</span>
           </router-link>
       </p>
-      <p class="q-ma-sm text-center">
-          <router-link class="text-primary" to="forgotPassword">Forgot Password?</router-link>
-      </p>
+
     </q-form>
   </q-page>
 </template>
@@ -93,7 +158,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['createNewUser', 'loginUser']),
+    ...mapActions('auth', ['createNewUser', 'loginUser', 'googleLoginUser']),
     onSubmit () {
       const { email, password } = this
       this.$refs.emailAuthenticationForm.validate()
@@ -135,4 +200,10 @@ export default {
   margin auto
   max-width 30em
   width 100%
+.fa-google-g-new
+  background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 72% 54%/151% 151% no-repeat
+  -webkit-background-clip: text
+  color: transparent
+  -webkit-text-fill-color: transparent
+
 </style>
