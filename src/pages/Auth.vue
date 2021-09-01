@@ -34,7 +34,7 @@
           style="height:50px;"
           text-color='white'
           color="blue-6"
-          @click="googleLoginUser()"
+          @click="twitterLoginUser()"
           >
           <q-icon
             left
@@ -140,7 +140,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions('auth', ['createNewUser', 'loginUser', 'googleLoginUser']),
+    ...mapActions('auth', ['createNewUser', 'loginUser', 'googleLoginUser', 'twitterLoginUser']),
     onSubmit () {
       const { email, password } = this
       this.$refs.emailAuthenticationForm.validate()

@@ -93,6 +93,26 @@ export const googleLoginUser = async function ($root) {
     path: '/user/profile'
   })
 }
+// DRY DRY
+export const twitterLoginUser = async function ($root) {
+  const $fb = this.$fb
+  const user = await $fb.loginWithTwitter()
+
+  const id = user.uid
+  const email = user.email
+  const doc = await docRef('users', id).get()
+
+  if ( doc.exists == false) { // create firebase profile data document
+    var created_at = $fb.timestamp()
+    const userRef = docRef('users', id)
+    console.log('creating user profile...')
+    addUserToUsersCollection({ email, id, created_at }, userRef)
+  }
+
+  this.$router.push({
+    path: '/user/profile'
+  })
+}
 
 /**
  * @returns {function} - Firebase services function:
