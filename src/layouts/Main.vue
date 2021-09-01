@@ -10,7 +10,15 @@
           HOME
         </q-toolbar-title>
 
-        <!-- <q-btn dense flat round icon="menu" @click="toggleRightDrawer" /> -->
+
+
+        <q-btn
+          v-if="$route.fullPath == '/posts/create'"
+          unelevated
+          label='post'
+          rounded
+          color="primary" />
+
       </q-toolbar>
     </q-header>
 
