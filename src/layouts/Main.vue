@@ -20,7 +20,7 @@
       bordered
       :breakpoint="500"
     >
-      <q-avatar class='q-pa-lg grow' size='lg'>
+      <q-avatar class='q-pa-lg grow' size='lg' @click="logoutUser()">
         <img src="https://cdn.quasar.dev/img/avatar.png">
       </q-avatar>
 
@@ -220,6 +220,7 @@
 
 <script>
 import { ref } from 'vue'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   setup () {
@@ -240,7 +241,13 @@ export default {
         rightDrawerOpen.value = !rightDrawerOpen.value
       }
     }
-  }
+  },
+  methods: {
+    ...mapActions('auth', ['logoutUser']),
+  },
+  computed: {
+    ...mapGetters('user', ['currentUser']),
+  },
 }
 </script>
 

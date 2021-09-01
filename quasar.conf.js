@@ -156,8 +156,8 @@ module.exports = configure(function (ctx) {
       },
 
       manifest: {
-        name: `quasar-firebase-auth`,
-        short_name: `quasar-firebase-auth`,
+        name: `OnlyBtcFans`,
+        short_name: `OnlyBtcFans`,
         description: `Quasar 2.0 integration with firebase auth and storage (user profile/photo upload/login/register/password reset). Boilerplate / project starter.`,
         display: 'standalone',
         orientation: 'portrait',
