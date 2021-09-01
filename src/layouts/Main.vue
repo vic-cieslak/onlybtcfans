@@ -20,6 +20,8 @@
       </q-toolbar>
     </q-header>
 
+
+    <!-- ------ overlay drawer------- -->
     <q-drawer
       v-model="drawerLeft"
       show-if-above
@@ -29,15 +31,184 @@
       class="bg-white text-black"
     >
       <q-scroll-area class="fit">
-        <div class="q-pa-sm">
-          <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
-        </div>
+          <q-avatar class='q-pa-lg grow' size='lg' >
+            <img src="https://cdn.quasar.dev/img/avatar.png">
+          </q-avatar>
+
+          <q-list padding class="overlay-menu-list q-pt-lg">
+
+            <q-separator/>
+
+            <q-item
+              clickable
+              v-ripple
+              to="/user/profile"
+              :active="link === 'profile'"
+              @click="link = 'profile'"
+              active-class="text-black"
+              class="overlay-menu-items">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-person-outline" />
+              </q-item-section>
+
+              <q-item-section>
+                My profile
+              </q-item-section>
+            </q-item>
+
+            <q-item
+              clickable
+              v-ripple
+              to='/bookmarks'
+              :active="link === 'bookmarks'"
+              @click="link = 'bookmarks'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-bookmark-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Bookmarks
+              </q-item-section>
+            </q-item>
+
+            <q-item
+              clickable
+              v-ripple
+              to='/my/lists'
+              :active="link === 'lists'"
+              @click="link = 'lists'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-list-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Lists
+              </q-item-section>
+            </q-item>
+
+            <q-item
+              clickable
+              v-ripple
+              to='/my/settings'
+              :active="link === 'settings'"
+              @click="link = 'settings'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-settings-2-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Settings
+              </q-item-section>
+            </q-item>
+            <q-separator/>
+
+            <q-item
+              clickable
+              v-ripple
+              to='/my/payments'
+              :active="link === 'payments'"
+              @click="link = 'payments'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-credit-card-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Payments
+              </q-item-section>
+            </q-item>
+
+            <q-item
+              clickable
+              v-ripple
+              to='/my/bank'
+              :active="link === 'bank'"
+              @click="link = 'bank'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-home-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Add bank
+              </q-item-section>
+            </q-item>
+
+            <q-separator/>
+
+            <q-item
+              clickable
+              v-ripple
+              to='/help'
+              :active="link === 'help'"
+              @click="link = 'help'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-question-mark-circle-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Help
+              </q-item-section>
+            </q-item>
+
+
+            <q-item
+              clickable
+              v-ripple
+              to='/darkmode'
+              :active="link === 'darkmode'"
+              @click="link = 'darkmode'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-moon-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Dark mode
+              </q-item-section>
+            </q-item>
+
+
+            <q-item
+              clickable
+              v-ripple
+              to='/language'
+              :active="link === 'language'"
+              @click="link = 'language'"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-globe-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                English
+              </q-item-section>
+            </q-item>
+
+            <q-separator/>
+
+            <q-item
+              clickable
+              v-ripple
+              @click="logoutUser()"
+              active-class="text-black">
+              <q-item-section avatar>
+                <q-icon size='md' name="eva-log-out-outline" />
+              </q-item-section>
+
+              <q-item-section class='overlay-menu-items'>
+                Log out
+              </q-item-section>
+            </q-item>
+
+
+          </q-list>
       </q-scroll-area>
     </q-drawer>
-
-
-
-
 
     <q-drawer
       v-model="leftDrawerOpen"
@@ -45,7 +216,7 @@
       bordered
       :breakpoint="500"
     >
-      <q-avatar class='q-pa-lg grow' size='lg' @click="logoutUser()">
+      <q-avatar class='q-pa-lg grow' size='lg'>
         <img src="https://cdn.quasar.dev/img/avatar.png">
       </q-avatar>
 
@@ -255,7 +426,7 @@ export default {
 
     return {
       leftDrawerOpen,
-      drawerLeft: ref(false),
+      drawerLeft: ref(true),
       link: ref(''),
       text: ref(''),
       toggleLeftDrawer () {
@@ -294,6 +465,12 @@ export default {
   color: grey
 .menu-items
   font-size: 22px
+.overlay-menu-list .q-item
+  border-radius: 0 32px 32px 0
+  color: black
+.overlay-menu-items
+  font-size: 13px
+  font-weight: bold
 body.desktop
   .q-hoverable:hover
     > .q-focus-helper
