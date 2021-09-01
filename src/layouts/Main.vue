@@ -10,8 +10,6 @@
           HOME
         </q-toolbar-title>
 
-
-
         <q-btn
           v-if="$route.fullPath == '/posts/create'"
           unelevated
@@ -21,6 +19,25 @@
 
       </q-toolbar>
     </q-header>
+
+    <q-drawer
+      v-model="drawerLeft"
+      show-if-above
+      :width="280"
+      :breakpoint="4500"
+      elevated
+      class="bg-white text-black"
+    >
+      <q-scroll-area class="fit">
+        <div class="q-pa-sm">
+          <div v-for="n in 50" :key="n">Drawer {{ n }} / 50</div>
+        </div>
+      </q-scroll-area>
+    </q-drawer>
+
+
+
+
 
     <q-drawer
       v-model="leftDrawerOpen"
@@ -151,8 +168,7 @@
         <q-item
           clickable
           v-ripple
-          :active="link === 'more'"
-          @click="link = 'more'"
+          @click="drawerLeft = !drawerLeft"
           active-class="text-black">
           <q-item-section avatar>
             <q-icon size='md' name="eva-more-horizontal-outline" />
@@ -239,6 +255,7 @@ export default {
 
     return {
       leftDrawerOpen,
+      drawerLeft: ref(false),
       link: ref(''),
       text: ref(''),
       toggleLeftDrawer () {
