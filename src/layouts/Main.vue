@@ -214,11 +214,15 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      :breakpoint="500"
+      :breakpoint="900"
     >
+
+    
       <q-avatar class='q-pa-lg grow' size='lg'>
         <img src="https://cdn.quasar.dev/img/avatar.png">
       </q-avatar>
+
+
 
       <q-list padding class="menu-list q-pt-lg q-pl-sm">
 
@@ -421,13 +425,21 @@
         active-color="primary"
         indicator-color="transparent">
         <q-route-tab
-          to="/"
+          to="/feed"
           exact
           icon="eva-home-outline"/>
         <q-route-tab
-          to="/camera"
+          to="/my/notifications"
           exact
-          icon="eva-camera-outline"/>
+          icon="eva-bell-outline"/>
+        <q-route-tab
+          to="/posts/create"
+          exact
+          icon="eva-plus-square-outline"/>
+        <q-route-tab
+          to="/my/chats"
+          exact
+          icon="eva-message-square-outline"/>
       </q-tabs>
 
     </q-footer>
