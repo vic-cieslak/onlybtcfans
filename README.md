@@ -1,17 +1,8 @@
-# Quasar 2 Firebase Auth and Storage Boilerplate
+# OnlyBtcFans - onlyfans clone without stupid KYC - bitcoin deposits - firebase backend
 
+This is almost 1-1 clone of the onlyfans UI recreated using vuejs and http://quasar.dev 
+Key difference here is a firebase backend and bitcoin deposits/balances [WIP]
 
-Boilerplate / project starter.
-
-Live demo: https://xenodochial-clarke-616008.netlify.app (uploader broken, work in progress)
-
-Quasar 2.0 integration with firebase auth and storage (user profiles/photo upload/login/register/password reset).
-
-This is code from https://github.com/quasarframework/firebase-sample-apps adapted for Quasar 2.0.3 and Vue 3.
-
-For information how all parts work together check out --> https://dev.to/quasar/to-the-stars-with-quasar-firebase-initial-service-structure-1fcf 
-
-If you already know what you are doing and just want to jump into extending it / adding new screens:
 
 ## Install the dependencies
 ```bash
@@ -20,11 +11,9 @@ yarn
 
 ## Create new project on firebase and go to console. Then:
 
-1. Enable auth (for email, maybe facebook/google if I managed to implement it already).
+1. Enable auth for email, twitter and google (need to have tokens).
 2. Create storage with rules (for photos).
 3. Create firestore database.
-
-For more information check -> https://dev.to/quasar/to-the-stars-with-quasar-firebase-initial-service-structure-1fcf
 
 
 ## Add your firebase API keys to .env.
