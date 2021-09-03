@@ -13,7 +13,7 @@
     <div class="profile-container">
         <div class="profile-photo text-center">
             <div class="default-user-image" v-if="showDefaultPhoto()">
-                <q-avatar round="round" color="blue-grey-10" icon="person" font-size="100px" size="120px" text-color="white"></q-avatar>
+                <q-avatar round="round" color="blue-grey-10" icon="eva-person-outline" font-size="100px" size="120px" text-color="white"></q-avatar>
             </div>
             <div class="user-image column q-pl-lg" v-else>
                 <q-avatar class="q-mb-sm shadow-5" size="140px">
