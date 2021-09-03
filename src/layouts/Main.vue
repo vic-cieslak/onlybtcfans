@@ -31,10 +31,24 @@
       class="bg-white text-black"
     >
       <q-scroll-area class="fit">
-          <q-avatar class='q-pa-lg grow' size='lg' >
-            <img src="https://cdn.quasar.dev/img/avatar.png">
-          </q-avatar>
+          <div v-if="currentUser">
 
+            <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
+                <q-avatar
+                  round="round"
+                  color="blue-grey-10"
+                  icon="person"
+                  font-size="100px"
+                  size="xl"
+                  text-color="white"></q-avatar>
+            </div>
+            <div class="q-pa-lg grow" v-else>
+                <q-avatar class="q-mb-sm shadow-5" size="xl">
+                    <q-img :src="currentUser.profilePhoto"></q-img>
+                </q-avatar>
+            </div>
+
+          </div>
           <q-list padding class="overlay-menu-list q-pt-lg">
 
             <q-separator/>
@@ -217,11 +231,25 @@
       :breakpoint="900"
     >
 
-    
-      <q-avatar class='q-pa-lg grow' size='lg'>
-        <img src="https://cdn.quasar.dev/img/avatar.png">
-      </q-avatar>
+      <!-- DRY IT MAKE IT INTO IMPORTABLE COMPONENT -->
+      <div v-if="currentUser">
 
+        <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
+            <q-avatar
+              round="round"
+              color="blue-grey-10"
+              icon="person"
+              font-size="100px"
+              size="lg"
+              text-color="white"></q-avatar>
+        </div>
+        <div class="q-pa-lg grow" v-else>
+            <q-avatar class="q-mb-sm shadow-5" size="lg">
+                <q-img :src="currentUser.profilePhoto"></q-img>
+            </q-avatar>
+        </div>
+
+      </div>
 
 
       <q-list padding class="menu-list q-pt-lg q-pl-sm">
@@ -440,7 +468,28 @@
           to="/my/chats"
           exact
           icon="eva-message-square-outline"/>
+        <!-- DRY IT MAKE IT INTO IMPORTABLE COMPONENT -->
+        <div v-if="currentUser" class='q-pt-sm' @click="drawerLeft = !drawerLeft">
+
+          <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
+              <q-avatar
+                round="round"
+                color="blue-grey-10"
+                icon="person"
+                font-size="100px"
+                size="sm"
+                text-color="white"></q-avatar>
+          </div>
+          <div class="q-pa-lg grow" v-else>
+              <q-avatar class="q-mb-sm shadow-5" size="sm">
+                  <q-img :src="currentUser.profilePhoto"></q-img>
+              </q-avatar>
+          </div>
+        </div>
+
       </q-tabs>
+
+
 
     </q-footer>
 
@@ -477,6 +526,12 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['logoutUser']),
+
+    showDefaultPhoto () {
+      return this.currentUser.profilePhoto === '' ||
+        this.currentUser.profilePhoto === null ||
+        this.currentUser.profilePhoto === undefined
+    }
   },
   computed: {
     ...mapGetters('user', ['currentUser']),
