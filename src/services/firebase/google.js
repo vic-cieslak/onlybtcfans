@@ -22,6 +22,7 @@ export const loginWithGoogle = () => {
   })
   .catch((error) => {
     // Handle Errors here.
+
     console.log('error wtf')
     var errorCode = error.code;
     var errorMessage = error.message;

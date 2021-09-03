@@ -12,7 +12,7 @@
           style="height:50px;"
           text-color='white'
           color="grey-5"
-          @click="googleLoginUser()"
+          @click="googleLogin()"
           >
           <q-icon
             left
@@ -34,7 +34,7 @@
           style="height:50px;"
           text-color='white'
           color="blue-6"
-          @click="twitterLoginUser()"
+          @click="twitterLogin()"
           >
           <q-icon
             left
@@ -141,6 +141,28 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['createNewUser', 'loginUser', 'googleLoginUser', 'twitterLoginUser']),
+    googleLogin() {
+      this.$q.loading.show({
+        message: 'Authenticating via Google...',
+        backgroundColor: 'grey',
+        spinner: QSpinnerGears,
+        customClass: 'loader'
+      })
+      this.googleLoginUser().catch((error) => {
+        this.$q.loading.hide()
+      })
+    },
+    twitterLogin(){
+      this.$q.loading.show({
+        message: 'Authenticating via Twitter...',
+        backgroundColor: 'grey',
+        spinner: QSpinnerGears,
+        customClass: 'loader'
+      })
+      this.twitterLoginUser().catch((error) => {
+        this.$q.loading.hide()
+      })
+    },
     onSubmit () {
       const { email, password } = this
       this.$refs.emailAuthenticationForm.validate()
