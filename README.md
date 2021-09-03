@@ -1,4 +1,4 @@
-# OnlyBtcFans - onlyfans clone without stupid KYC - bitcoin deposits - firebase backend
+# OnlyBtcFans - onlyfans clone without stupid KYC 
 
 This is almost 1-1 clone of onlyfans UI recreated using vuejs and http://quasar.dev 
 
