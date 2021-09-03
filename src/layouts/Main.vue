@@ -232,7 +232,7 @@
     >
 
       <!-- DRY IT MAKE IT INTO IMPORTABLE COMPONENT -->
-      <div v-if="currentUser">
+      <div v-if="currentUser" @click="drawerLeft = !drawerLeft">
 
         <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
             <q-avatar
