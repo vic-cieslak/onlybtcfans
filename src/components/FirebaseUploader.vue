@@ -117,7 +117,8 @@ export default createUploaderComponent({
           (f) => f.name !== file.name
         );
 
-        // As of Quasar v2 beta7 uploadSize cannot be taken out of helpers/state. So removeFile won't be able to change blue header the label on top.
+        // As of Quasar v2 beta7 uploadSize cannot be taken out of helpers/state. 
+        // So removeFile won't be able to change blue header the label on top.
         helpers.uploadSize.value -= file.__uploaded;
       } else if (file.__status === "uploading") {
         file.__abort();
