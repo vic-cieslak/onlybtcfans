@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <q-input
-      class='q-px-md'
+      class='q-pl-lg'
       v-model="text"
       autogrow
       :input-style="{'font-size': '18px'}"
@@ -22,9 +22,16 @@
 
 
       <template v-slot:header="scope" >
-        <div class="row no-wrap items-center q-pa-sm q-gutter-xs bg-grey-1">
-
-          <q-btn v-if="scope.canAddFiles" type="a" color='grey-6' icon="eva-image-outline" round dense flat>
+        <div class="row no-wrap items-center q-pa-none q-gutter-xs bg-grey-1">
+          <q-btn
+            v-if="scope.canAddFiles"
+            type="a"
+            color='grey-6'
+            class='q-ml-xs'
+            icon="eva-image-outline"
+            round
+            dense
+            flat>
             <q-uploader-add-trigger />
             <q-tooltip>Add Files</q-tooltip>
           </q-btn>
@@ -54,7 +61,7 @@
 
       <template v-slot:list="scope" >
 
-          <q-scroll-area style="height: 300px; " class='full-width'>
+          <q-scroll-area style="height: 200px; " class='full-width'>
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
 
               <template v-for="file in scope.files" :key="file.name">
@@ -80,32 +87,6 @@
 
             </div>
           </q-scroll-area>
-
-        <!-- <q-list separator>
-
-          <q-item v-for="file in scope.files" :key="file.name">
-            <q-item-section
-              v-if="file.__img"
-              thumbnail
-              class="gt-xs"
-            >
-              <img :src="file.__img.src">
-            </q-item-section>
-
-            <q-item-section top side>
-              <q-btn
-                class="gt-xs"
-                size="12px"
-                flat
-                dense
-                round
-                icon="delete"
-                @click="scope.removeFile(file)"
-              />
-            </q-item-section>
-          </q-item>
-
-        </q-list> -->
 
 
       </template>
