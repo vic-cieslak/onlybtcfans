@@ -445,8 +445,12 @@
 
     <q-footer
       class="bg-white small-screen-only"
-      bordered>
+      bordered
+      style='height:50px'
+      >
+
       <q-tabs
+        style='height:50px'
         class="text-grey-10"
         active-color="primary"
         indicator-color="transparent">
@@ -467,7 +471,10 @@
           exact
           icon="eva-message-square-outline"/>
         <!-- DRY IT MAKE IT INTO IMPORTABLE COMPONENT -->
-        <div v-if="currentUser" class='q-pt-sm' @click="drawerLeft = !drawerLeft">
+        <div
+          v-if="currentUser"
+          class='q-pt-sm'
+          @click="drawerLeft = !drawerLeft">
 
           <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
               <q-avatar
