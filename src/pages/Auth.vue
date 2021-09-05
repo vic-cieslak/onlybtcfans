@@ -1,6 +1,13 @@
 <template>
   <q-page padding>
-    <h5 class="text-center">Logo here</h5>
+    <div class="flex flex-center">
+      <img
+      alt="casting logo"
+      src="~assets/bender.jpeg"
+      style="width: 30%; height: 30%"
+      >
+    </div>
+
     <h6 class="text-center text-caption">Sign up to earn bitcoin and interact with your fans!</h6>
 
     <div class="row justify-center">

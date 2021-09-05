@@ -37,8 +37,7 @@
                 <q-avatar
                   round="round"
                   color="blue-grey-10"
-                  icon="person"
-                  font-size="100px"
+                  icon="eva-person-outline"
                   size="xl"
                   text-color="white"></q-avatar>
             </div>
@@ -238,8 +237,7 @@
             <q-avatar
               round="round"
               color="blue-grey-10"
-              icon="person"
-              font-size="100px"
+              icon="eva-person-outline"
               size="lg"
               text-color="white"></q-avatar>
         </div>
@@ -475,8 +473,7 @@
               <q-avatar
                 round="round"
                 color="blue-grey-10"
-                icon="person"
-                font-size="100px"
+                icon="eva-person-outline"
                 size="sm"
                 text-color="white"></q-avatar>
           </div>
