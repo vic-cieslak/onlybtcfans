@@ -538,6 +538,7 @@ export default {
 
 <style lang="sass">
 .q-footer
+  height: 80px
   .q-tab__icon
     font-size: 30px
 .q-header

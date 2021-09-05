@@ -16,16 +16,20 @@
       url="http://localhost:4444/upload"
       label="Custom header"
       multiple
+      flat
+      class='full-width bg-grey-1'
     >
 
 
-      <template v-slot:header="scope">
-        <div class="row no-wrap items-center q-pa-sm q-gutter-xs">
+      <template v-slot:header="scope" >
+        <div class="row no-wrap items-center q-pa-sm q-gutter-xs bg-grey-1">
 
-          <q-btn v-if="scope.canAddFiles" type="a" icon="add_box" round dense flat>
+          <q-btn v-if="scope.canAddFiles" type="a" color='grey-6' icon="eva-image-outline" round dense flat>
             <q-uploader-add-trigger />
-            <q-tooltip>Pick Files</q-tooltip>
+            <q-tooltip>Add Files</q-tooltip>
           </q-btn>
+
+
           <!-- <q-btn v-if="scope.queuedFiles.length > 0" icon="clear_all" @click="scope.removeQueuedFiles" round dense flat >
             <q-tooltip>Clear All</q-tooltip>
           </q-btn> -->
@@ -48,8 +52,36 @@
       </template>
 
 
-      <template v-slot:list="scope">
-        <q-list separator>
+      <template v-slot:list="scope" >
+
+          <q-scroll-area style="height: 300px; " class='full-width'>
+            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+
+              <template v-for="file in scope.files" :key="file.name">
+                <q-img
+                  class="rounded-borders col-3 full-height"
+                  :src="file.__img.src"
+                  width='200px'
+                  >
+
+                  <q-btn
+                    class="float-right all-pointer-events"
+                    size="lg"
+                    flat
+                    dense
+                    round
+                    color='primary'
+                    icon="eva-close-circle"
+                    @click="scope.removeFile(file)"
+                  />
+                </q-img>
+
+              </template>
+
+            </div>
+          </q-scroll-area>
+
+        <!-- <q-list separator>
 
           <q-item v-for="file in scope.files" :key="file.name">
             <q-item-section
@@ -73,20 +105,15 @@
             </q-item-section>
           </q-item>
 
-        </q-list>
+        </q-list> -->
+
+
       </template>
     </q-uploader>
   </div>
-  
 
 
-  <q-btn
-    flat
-    class='q-pa-md'
-    round
-    color="grey-6"
-    icon="eva-image-outline" />
-  <q-separator class='q-mt-sm' />
+  <!-- <q-separator class='q-mt-sm' /> -->
   </q-page>
 </template>
 
@@ -97,6 +124,7 @@ export default {
   name: 'PageCreatePost',
   setup () {
     return {
+      slide: ref(1),
       text: ref('')
     }
   }
