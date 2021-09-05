@@ -158,7 +158,7 @@ export default {
     },
     prefixPath () {
       const id = this.currentUser.id,
-        path = `${id}/${this.photoType}Photo/`
+        path = `profile_photos/${id}/${this.photoType}Photo/`
       return path
     }
   },
