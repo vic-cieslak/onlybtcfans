@@ -15,10 +15,10 @@
 
 
 
-    <!-- @uploaded="uploadComplete" -->
 
     <PostPhotoUploader
       label="Custom header"
+      @uploaded="addUrlToPostData"
       multiple
       class='full-width bg-grey-1'
       color="primary"
@@ -100,6 +100,7 @@
 import { ref } from 'vue'
 import PostPhotoUploader from '../components/PostPhotoUploader.vue'
 import { mapActions, mapGetters, mapMutations } from 'vuex'
+import { v4 as uuidv4 } from 'uuid';
 
 export default {
   name: 'PageCreatePost',
@@ -109,7 +110,14 @@ export default {
   setup () {
     return {
       slide: ref(1),
-      text: ref('')
+      text: ref(''),
+      post_id: uuidv4(),
+      media_urls: []
+    }
+  },
+  methods: {
+    addUrlToPostData(response) {
+      this.media_urls.push(response['downloadURL'])
     }
   },
   computed: {
@@ -122,7 +130,7 @@ export default {
     },
     prefixPath () {
       const id = this.currentUser.id,
-        path = `posts/${id}/${this.photoType}Photo/`
+        path = `posts/${id}/${this.post_id}/`
       return path
     }
   },

@@ -19,6 +19,7 @@
     "quasar": "^2.0.0",
     "stylus": "^0.54.8",
     "stylus-loader": "3.0.2",
+    "uuid": "^8.3.2",
     "vuex": "^4.0.1",
     "vuexfire": "^3.2.5"
   },

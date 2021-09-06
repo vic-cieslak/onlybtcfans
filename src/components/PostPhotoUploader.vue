@@ -3,6 +3,7 @@ import { createUploaderComponent } from "quasar";
 import { computed, ref } from "vue";
 import firebase from "firebase/app";
 import { docRef } from '../services/firebase/db.js'
+import { v4 as uuidv4 } from 'uuid';
 
 // export a Vue component
 export default createUploaderComponent({
@@ -59,11 +60,10 @@ export default createUploaderComponent({
       });
     }
     function __uploadSingleFile(file) {
-      console.log('uploading')
-      // let prefixPath = props.prefixPath || "";
-      let prefixPath =  "test";
+      let prefixPath = props.prefixPath || "";
       let fileSuffix = file.type.split('/')[1]
-      const fileRef = storage.value.child(`${prefixPath}/photo3.${fileSuffix}`);
+      let photo_id = uuidv4()
+      const fileRef = storage.value.child(`${prefixPath}/${photo_id}.${fileSuffix}`);
 
       helpers.updateFileStatus(file, "uploading", 0);
       const uploadTask = fileRef.put(file);
@@ -98,6 +98,7 @@ export default createUploaderComponent({
             .getDownloadURL()
             .then((downloadURL) => {
               docRef('users', props.meta.id).update({ [`${props.meta.photoType}Photo`]: downloadURL })
+              console.log(downloadURL)
               emit("uploaded", { downloadURL } )
             })
             .catch((error) => {
@@ -121,7 +122,7 @@ export default createUploaderComponent({
         // As of Quasar v2 beta7 uploadSize cannot be taken out of helpers/state.
         // So removeFile won't be able to change blue header the label on top.
         helpers.uploadSize.value -= file.__uploaded;
-        
+
       } else if (file.__status === "uploading") { // this case not handled atm
         // file.__abort();
         console.log('abort should do something here')
