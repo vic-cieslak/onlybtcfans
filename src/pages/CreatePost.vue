@@ -28,7 +28,6 @@
       auto-upload
       accept=".jpg, image/*"
       flat
-      bordered
       style="max-width: 300px"
     >
 
@@ -79,7 +78,7 @@
                     round
                     color='primary'
                     icon="eva-close-circle"
-                    @click="console.log(this)"
+                    @click='scope.removeThisFile(file)'
                   />
                 </q-img>
 
@@ -94,7 +93,6 @@
   </div>
 
 
-  <!-- <q-separator class='q-mt-sm' /> -->
   </q-page>
 </template>
 

@@ -107,8 +107,7 @@ export default createUploaderComponent({
         }
       );
     }
-
-    function removeFile(file) {
+    function removeThisFile(file) {
       console.log('removign')
       if (props.disable) {
         return;
@@ -122,9 +121,10 @@ export default createUploaderComponent({
         // As of Quasar v2 beta7 uploadSize cannot be taken out of helpers/state.
         // So removeFile won't be able to change blue header the label on top.
         helpers.uploadSize.value -= file.__uploaded;
-      } else if (file.__status === "uploading") {
+        
+      } else if (file.__status === "uploading") { // this case not handled atm
         // file.__abort();
-        console.log('i dunno what to do here')
+        console.log('abort should do something here')
       } else {
         helper.uploadSize.value -= file.size;
       }
@@ -147,7 +147,7 @@ export default createUploaderComponent({
     return {
       isUploading,
       isBusy,
-
+      removeThisFile,
       abort,
       upload,
     };
