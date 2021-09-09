@@ -2,7 +2,9 @@
 
 This is almost 1-1 clone of onlyfans UI recreated using vuejs and http://quasar.dev 
 
-Key difference here is a firebase backend and bitcoin deposits/balances [WIP]
+Demo: https://gracious-gates-0fc7f4.netlify.app
+
+Key differences here are a firebase backend and bitcoin deposits/balances [WIP]
 
 <a href="https://imgflip.com/i/5lqzbp"><img src="https://i.imgflip.com/5lqzbp.jpg" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
 
