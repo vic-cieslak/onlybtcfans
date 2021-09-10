@@ -1,5 +1,24 @@
 <template>
   <q-page>
+    <q-header
+      bordered
+      class="bg-white text-grey-10">
+      <q-toolbar >
+        <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
+
+        <q-toolbar-title style="font-size: 19px;" class="text-bold q-ml-sm">
+          Add post
+        </q-toolbar-title>
+
+        <q-btn
+          unelevated
+          label='post'
+          rounded
+          color="primary" />
+
+      </q-toolbar>
+    </q-header>
+
     <q-input
       class='q-pl-lg'
       v-model="text"
@@ -9,24 +28,20 @@
       placeholder="Compose new post..."
     />
 
-
-
     <div class="q-pa-md">
-
-
 
 
     <PostPhotoUploader
       label="Custom header"
       @uploaded="addUrlToPostData"
       multiple
-      class='full-width bg-grey-1'
+      class='row bg-grey-1'
       color="primary"
       square
       :meta="meta"
       :prefixPath="prefixPath"
       auto-upload
-      accept=".jpg, image/*"
+      accept=".jpg, image/*, video/*"
       flat
       style="max-width: 300px"
     >
@@ -58,14 +73,17 @@
       </template>
 
 
-      <template v-slot:list="scope" >
+      <template v-slot:list="scope">
 
-          <q-scroll-area style="height: 200px; " class='full-width'>
+          <q-scroll-area style="height: 250px" >
             <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
 
               <template v-for="file in scope.files" :key="file.name">
+
+                <!-- bad code ahead  -->
                 <q-img
                   class="rounded-borders col-3 full-height"
+                  v-if="file.__img"
                   :src="file.__img.src"
                   width='200px'
                   >
@@ -80,8 +98,29 @@
                     icon="eva-close-circle"
                     @click='scope.removeThisFile(file)'
                   />
+
                 </q-img>
 
+                <q-img
+                  class="rounded-borders col-3 full-height"
+                  v-else
+                  src="~assets/Video-Placeholder.png"
+                  width='200px'
+                  >
+
+                  <q-btn
+                    class="float-right all-pointer-events"
+                    size="lg"
+                    flat
+                    dense
+                    round
+                    color='primary'
+                    icon="eva-close-circle"
+                    @click='scope.removeThisFile(file)'
+                  />
+
+                </q-img>
+                <!-- bad code ends  -->
               </template>
 
             </div>
