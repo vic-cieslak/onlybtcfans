@@ -99,6 +99,7 @@ export default createUploaderComponent({
             .then((downloadURL) => {
               docRef('users', props.meta.id).update({ [`${props.meta.photoType}Photo`]: downloadURL })
               console.log(downloadURL)
+              file.__firebaseURL = downloadURL
               emit("uploaded", { downloadURL } )
             })
             .catch((error) => {
@@ -109,7 +110,7 @@ export default createUploaderComponent({
       );
     }
     function removeThisFile(file) {
-      console.log('removign')
+
       if (props.disable) {
         return;
       }
@@ -125,7 +126,8 @@ export default createUploaderComponent({
 
       } else if (file.__status === "uploading") { // this case not handled atm
         // file.__abort();
-        console.log('abort should do something here')
+        // todo abort should do something here
+        console.log('aborting')
       } else {
         helper.uploadSize.value -= file.size;
       }
