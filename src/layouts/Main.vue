@@ -64,44 +64,7 @@
 
     <!-- right column search and suggestions -->
     <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
-
-      <q-input
-        class='q-pa-md'
-        bottom-slots
-        color="primary"
-        v-model="text"
-        clearable
-        outlined
-        label="Search posts">
-
-        <template v-slot:append>
-          <q-icon name="search" />
-        </template>
-      </q-input>
-
-      <div class="q-pt-md">
-
-        <q-btn
-          flat
-          color="grey-7"
-          icon="eva-pricetags-outline" />
-
-        <q-btn
-          flat
-          color="grey-7"
-          icon="eva-refresh-outline" />
-
-        <q-btn
-          flat
-          color="grey-7"
-          icon="eva-arrow-ios-back-outline" />
-
-        <q-btn
-          flat
-          color="grey-7"
-          icon="eva-arrow-ios-forward-outline" />
-      </div>
-
+      <RightDrawerContents />
     </q-drawer>
 
 
@@ -168,11 +131,13 @@ import { ref } from 'vue'
 import { mapGetters, mapActions } from 'vuex'
 import MobileMenuContents from 'components/MobileMenuContents'
 import LeftMenuDrawerContents from 'components/LeftMenuDrawerContents'
+import RightDrawerContents from 'components/RightDrawerContents'
 
 export default {
   components: {
     MobileMenuContents,
-    LeftMenuDrawerContents
+    LeftMenuDrawerContents,
+    RightDrawerContents
   },
   setup () {
     const leftDrawerOpen = ref(false)
