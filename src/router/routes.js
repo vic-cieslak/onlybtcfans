@@ -3,36 +3,43 @@ const routes = [
     path: '/',
     component: () => import('src/layouts/Main.vue'),
     meta: {
-      requiresAuth: true
+      requiresAuth: true,
+      toolbarTitle: 'HOME'
     },
     children: [
       {
         path: '/feed',
-        component: () => import('pages/Feed.vue')
+        component: () => import('pages/Feed.vue'),
       },
       {
         path: '/my/notifications',
-        component: () => import('pages/Notifications.vue')
+        component: () => import('pages/Notifications.vue'),
+        meta: { toolbarTitle: 'NOTIFICATIONS' }
       },
       {
         path: '/my/chats',
-        component: () => import('pages/Chats.vue')
+        component: () => import('pages/Chats.vue'),
+        meta: { toolbarTitle: 'MESSAGES' }
       },
       {
         path: '/bookmarks',
-        component: () => import('pages/Bookmarks.vue')
+        component: () => import('pages/Bookmarks.vue'),
+        meta: { toolbarTitle: 'BOOKMARKS' }
       },
       {
         path: '/my/lists',
-        component: () => import('pages/Lists.vue')
+        component: () => import('pages/Lists.vue'),
+        meta: { toolbarTitle: 'LISTS' }
       },
       {
         path: '/my/subscriptions',
-        component: () => import('pages/Subscriptions.vue')
+        component: () => import('pages/Subscriptions.vue'),
+        meta: { toolbarTitle: 'SUBSCRIPTIONS' }
       },
       {
         path: '/posts/create',
-        component: () => import('pages/CreatePost.vue')
+        component: () => import('pages/CreatePost.vue'),
+        meta: { toolbarTitle: 'ADD POST' }
       },
       {
         path: '/user/profile',

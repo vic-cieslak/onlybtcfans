@@ -7,7 +7,7 @@
         <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
 
         <q-toolbar-title style="font-size: 19px;" class="text-bold q-ml-sm">
-          HOME
+          {{ $route.meta.toolbarTitle }}
         </q-toolbar-title>
 
         <q-btn

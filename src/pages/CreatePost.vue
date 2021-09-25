@@ -1,24 +1,5 @@
 <template>
   <q-page>
-    <q-header
-      bordered
-      class="bg-white text-grey-10">
-      <q-toolbar >
-        <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
-
-        <q-toolbar-title style="font-size: 19px;" class="text-bold q-ml-sm">
-          Add post
-        </q-toolbar-title>
-
-        <q-btn
-          unelevated
-          label='post'
-          rounded
-          @click='addPost'
-          color="primary" />
-
-      </q-toolbar>
-    </q-header>
 
     <q-input
       class='q-pl-lg'
