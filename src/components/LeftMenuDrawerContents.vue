@@ -1,23 +1,4 @@
 <template>
-  <div v-if="currentUser" @click="drawerLeft = !drawerLeft">
-
-    <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
-        <q-avatar
-          round="round"
-          color="blue-grey-10"
-          icon="eva-person-outline"
-          size="lg"
-          text-color="white"></q-avatar>
-    </div>
-    <div class="q-pa-lg grow" v-else>
-        <q-avatar class="q-mb-sm shadow-5" size="lg">
-            <q-img :src="currentUser.profilePhoto"></q-img>
-        </q-avatar>
-    </div>
-
-  </div>
-
-
   <q-list padding class="menu-list q-pt-lg q-pl-sm">
 
     <!-- REFACTOR , those q-items could go into separate components -->
@@ -138,7 +119,7 @@
     <q-item
       clickable
       v-ripple
-      @click="drawerLeft = !drawerLeft"
+      @click="$emit('switchDrawer')"
       active-class="text-black">
       <q-item-section avatar>
         <q-icon size='md' name="eva-more-horizontal-outline" />
