@@ -14,7 +14,6 @@ export const loginWithFacebook = () => {
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
     var credential = result.credential;
-    console.log(credential)
     // The signed-in user info.
     var user = result.user;
 
