@@ -22,14 +22,15 @@ def checkAuthorizedUserFirebaseToken(id_token):
 
 def createUserToken(request):
   """
-    request is of type Flask Request
-    generate Stream token for given user_id
+    request is of type Flask Request.
+    generate token for given user_id
+    to interact with getstream.io client side.
   """
   # grab Auth bearer from request
   authorization = request.headers['Authorization']
   id_token = authorization.split('Bearer ')[1]
   uid = checkAuthorizedUserFirebaseToken(id_token)
-  if not uid:
+  if not uid: # there is no uid so there is no user
     abort(403, description='Authorization header missing or incorrect.')
 
   content_type = request.headers['content-type']
