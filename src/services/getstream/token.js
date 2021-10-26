@@ -19,6 +19,7 @@ export const getStreamToken = async (firebaseAuthUser) => {
       }
      }).then(stream_token => {
         store.commit('user/saveStreamToken', stream_token)
+        console.log(stream_token)
     })
   });
 }
