@@ -1,6 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
 import { store } from '../../store'
+import { getStreamToken } from '../getstream/token'
 
 // should be more DRY
 export const loginWithGoogle = () => {
@@ -18,9 +19,7 @@ export const loginWithGoogle = () => {
     //You can use it to access the Google API.
     // var accessToken = credential.accessToken;
 
-    user.getIdToken().then(token => {
-      store.commit('user/saveStreamToken', token)
-    });
+    getStreamToken(user)
 
     return user
     // ...

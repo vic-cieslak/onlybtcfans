@@ -36,3 +36,4 @@ yarn-error.log*
 
 /functions/service_token.json
 
+/getstream-dev

@@ -28,7 +28,6 @@
       style="max-width: 300px"
     >
 
-
       <template v-slot:header="scope" >
         <div class="row no-wrap items-center q-pa-none q-gutter-xs bg-grey-1">
           <q-btn

@@ -15,6 +15,7 @@
           unelevated
           label='post'
           rounded
+          @click='createPost'
           color="primary" />
 
       </q-toolbar>
@@ -143,8 +144,12 @@ export default {
     const leftDrawerOpen = ref(false)
     const rightDrawerOpen = ref(false)
 
+    function createPost(val) {
+      console.log('its working!', val)
+    }
 
     return {
+      createPost,
       leftDrawerOpen,
       drawerLeft: ref(false),
       link: ref(''),
