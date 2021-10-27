@@ -39,7 +39,9 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      :breakpoint="900"
+      :mini="miniState"
+      :width="300"
+      :breakpoint="600"
     >
       <!-- REFACTOR this could be refactored as it repeats twice -->
       <div v-if="currentUser" @click="drawerLeft = !drawerLeft">
@@ -128,11 +130,12 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed, ref } from "vue";
 import { mapGetters, mapActions } from 'vuex'
 import MobileMenuContents from 'components/MobileMenuContents'
 import LeftMenuDrawerContents from 'components/LeftMenuDrawerContents'
 import RightDrawerContents from 'components/RightDrawerContents'
+import { useQuasar } from 'quasar'
 
 export default {
   components: {
@@ -143,12 +146,18 @@ export default {
   setup () {
     const leftDrawerOpen = ref(false)
     const rightDrawerOpen = ref(false)
+    const switchToMini = 1300
+    const $q = useQuasar()
+    const miniState = computed(() => {
+      return $q.screen.width < switchToMini
+    });
 
     function createPost(val) {
       console.log('its working!', val)
     }
 
     return {
+      miniState,
       createPost,
       leftDrawerOpen,
       drawerLeft: ref(false),
