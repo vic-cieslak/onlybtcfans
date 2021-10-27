@@ -40,12 +40,13 @@
       show-if-above
       bordered
       :mini="miniState"
+      :mini-width="100"
       :width="300"
       :breakpoint="600"
     >
       <!-- REFACTOR this could be refactored as it repeats twice -->
       <div v-if="currentUser" @click="drawerLeft = !drawerLeft">
-        <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
+        <div class="q-pl-lg q-pt-lg grow" v-if="showDefaultPhoto()">
             <q-avatar
               round="round"
               color="blue-grey-10"
@@ -53,7 +54,7 @@
               size="lg"
               text-color="white"></q-avatar>
         </div>
-        <div class="q-pa-lg grow" v-else>
+        <div class="q-pl-lg q-pt-lg grow" v-else>
             <q-avatar class="q-mb-sm shadow-5" size="lg">
                 <q-img :src="currentUser.profilePhoto"></q-img>
             </q-avatar>

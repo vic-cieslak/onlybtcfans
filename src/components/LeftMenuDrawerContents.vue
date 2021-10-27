@@ -131,17 +131,27 @@
     </q-item>
 
     <q-item class='q-pl-sm q-pt-lg'>
-      <q-btn
-        to='/posts/create'
-        style="width: 300px; height: 45px"
-        unelevated
-        align="between"
-        rounded
-        color="primary">
-        <q-icon left color='white' name='add' />
-            <q-space />
-            New post
-            <q-space />
+        <q-btn
+          v-if='!miniState'
+          to='/posts/create'
+          style="width: 300px; height: 45px"
+          unelevated
+          align="between"
+          rounded
+          color="primary">
+          <q-icon left color='white' name='add' />
+                <q-space />
+                New post
+                <q-space />
+          </q-btn>
+        <q-btn
+          v-else
+          to='/posts/create'
+          unelevated
+          round
+          color="primary">
+          <q-icon color='white' name='add' />
+
         </q-btn>
     </q-item>
 
@@ -150,6 +160,8 @@
 
 <script>
 import { mapActions } from 'vuex'
+import { useQuasar } from 'quasar'
+import { computed, ref } from "vue";
 
 export default {
   props: {
@@ -169,7 +181,16 @@ export default {
         this.currentUser.profilePhoto === null ||
         this.currentUser.profilePhoto === undefined
     }
+  },
+  setup () {
+    const $q = useQuasar()
+    let switchToMini = 1300
+    const miniState = computed(() => {
+      return $q.screen.width < switchToMini
+    });
+    return { miniState }
   }
+
 }
 </script>
 
