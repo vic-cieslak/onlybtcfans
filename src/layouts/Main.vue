@@ -99,7 +99,7 @@
         <!-- DRY IT MAKE IT INTO IMPORTABLE COMPONENT -->
         <div
           v-if="currentUser"
-          class='q-pr-sm'
+          class='q-pt-xs q-pr-xs'
           @click="drawerLeft = !drawerLeft">
 
           <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
