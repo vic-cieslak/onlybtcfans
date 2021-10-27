@@ -39,7 +39,7 @@ const routes = [
       {
         path: '/posts/create',
         component: () => import('pages/CreatePost.vue'),
-        meta: { toolbarTitle: 'ADD POST' }
+        meta: { toolbarTitle: 'NEW POST' }
       },
       {
         path: '/user/profile',

@@ -46,19 +46,23 @@
     >
       <!-- REFACTOR this could be refactored as it repeats twice -->
       <div v-if="currentUser" @click="drawerLeft = !drawerLeft">
-        <div class="q-pl-lg q-pt-lg grow" v-if="showDefaultPhoto()">
-            <q-avatar
-              round="round"
-              color="blue-grey-10"
-              icon="eva-person-outline"
-              size="lg"
-              text-color="white"></q-avatar>
-        </div>
-        <div class="q-pl-lg q-pt-lg grow" v-else>
-            <q-avatar class="q-mb-sm shadow-5" size="lg">
-                <q-img :src="currentUser.profilePhoto"></q-img>
-            </q-avatar>
-        </div>
+        <q-list padding class="q-pt-lg q-pl-sm">
+
+          <div class="q-pl-lg grow" v-if="showDefaultPhoto()">
+              <q-avatar
+                round="round"
+                color="blue-grey-10"
+                icon="eva-person-outline"
+                size="lg"
+                text-color="white"></q-avatar>
+          </div>
+          <div class="q-pl-lg grow" v-else>
+              <q-avatar class="q-mb-sm shadow-5" size="lg">
+                  <q-img :src="currentUser.profilePhoto"></q-img>
+              </q-avatar>
+          </div>
+        </q-list>
+
       </div>
       <LeftMenuDrawerContents
         @switchDrawer="drawerLeft = !drawerLeft"

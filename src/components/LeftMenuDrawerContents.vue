@@ -1,6 +1,5 @@
 <template>
-  <q-list padding class="menu-list q-pt-lg q-pl-sm">
-
+  <q-list padding class="menu-list q-pt-xs q-pl-sm">
     <!-- REFACTOR , those q-items could go into separate components -->
     <q-item
       clickable
