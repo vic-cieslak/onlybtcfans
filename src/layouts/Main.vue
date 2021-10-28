@@ -56,7 +56,10 @@
                 size="lg"
                 text-color="white"></q-avatar>
           </div>
-          <div class="q-pl-lg grow" v-else>
+          <div
+            class="grow"
+            v-bind:class="{ 'q-pl-lg': miniState, 'q-pl-sm': !miniState }"
+            v-else>
               <q-avatar class="q-mb-sm shadow-5" size="lg">
                   <q-img :src="currentUser.profilePhoto"></q-img>
               </q-avatar>
