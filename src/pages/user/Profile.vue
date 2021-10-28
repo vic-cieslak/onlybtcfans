@@ -10,18 +10,42 @@
           </q-img>
         </div>
     </div>
-    <div class="profile-container">
-        <div class="profile-photo ">
+    <div class="profile-container ">
+        <div class="profile-photo">
           <div class="default-user-image" v-if="showDefaultPhoto()">
               <q-avatar round="round" color="blue-grey-10" icon="eva-person-outline" font-size="100px" size="120px" text-color="white"></q-avatar>
           </div>
 
           <div class="user-image text-left q-pl-lg" v-else>
 
+            <div class='row justify-between items-end'>
+              <q-avatar class="q-mb-sm inline-flex shadow-5" size="140px">
+                <q-img :src="currentUser.profilePhoto"></q-img>
+              </q-avatar>
+              <div class='inline-flex q-pr-lg'>
+                <q-btn
+                  class="q-ma-md"
+                  rounded
+                  @click="setEditUserDialog(true); setBlur()"
+                  color="white"
+                  bordered
+                  text-color='primary'
+                  icon="settings">
+                  <div class='q-pl-sm'>Edit profile</div>
+                  </q-btn>
 
-            <q-avatar class="q-mb-sm shadow-5" size="140px">
-              <q-img :src="currentUser.profilePhoto"></q-img>
-            </q-avatar>
+                <q-btn
+                  round
+                  color="white"
+                  bordered
+                  text-color='primary'
+                  icon="open_in_new"
+                  >
+                </q-btn>
+              </div>
+
+            </div>
+
               <div class="text-weight-bold text-h6">{{ getUserData('fullName') }}</div>
               <div class="row text-weight-bold text-h7 text-grey-6">
                 <div class='inline-flex'>
@@ -66,32 +90,8 @@
 
               </div>
               <div class="q-pt-sm"> I click buttons</div>
-              <div class="text-weight-bold text-h7 text-grey-6"> Location poland</div>
-
-
-            <div class=''>
-              <q-btn
-                class="q-ma-md"
-                rounded
-                @click="setEditUserDialog(true); setBlur()"
-                color="white"
-                bordered
-                text-color='primary'
-                icon="settings">
-                <div class='q-pl-sm'>Edit profile</div>
-                </q-btn>
-              <q-btn
-                rounded
-                color="white"
-                bordered
-                text-color='primary'
-                icon="open_in_new"
-
-                >
-              </q-btn>
-            </div>
-
-
+              <div class="text-weight-bold text-h7 text-grey-6 q-pb-lg">
+                 Location poland</div>
           </div>
 
 
@@ -109,11 +109,49 @@
           </div>
         </div> -->
 
+     <q-separator class='q-pt-sm' color='grey-3'/>
+       <div class="q-gutter-y-md" >
+          <q-card flat>
+            <q-tabs
+              v-model="tab"
+              dense
+              class="text-grey"
+              active-color="primary"
+              indicator-color="primary"
+              align="justify"
+              narrow-indicator
+            >
+              <q-tab name="mails" label="Posts" />
+              <q-tab name="alarms" label="Media" />
+              <q-tab name="movies" label="Archived" />
+            </q-tabs>
+
+            <q-separator />
+
+            <q-tab-panels v-model="tab" animated>
+              <q-tab-panel name="mails">
+                <div class="text-h6">Posts</div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </q-tab-panel>
+
+              <q-tab-panel name="alarms">
+                <div class="text-h6">Media</div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </q-tab-panel>
+
+              <q-tab-panel name="movies">
+                <div class="text-h6">Archived</div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              </q-tab-panel>
+            </q-tab-panels>
+          </q-card>
+
+        </div>
 
     </div>
 
     <q-dialog v-model="editUserDialog" full-height="full-height" persistent="persistent" @before-hide="setBlur">
-        <user-settings></user-settings>
+      <user-settings></user-settings>
     </q-dialog>
 </q-page>
 </template>
@@ -122,6 +160,7 @@
 import { mapGetters, mapMutations } from 'vuex'
 import { QSpinnerGears, QSpinnerRadio } from 'quasar'
 import UserSettings from './profile/UserSettings.vue'
+import { ref } from 'vue'
 
 export default {
   name: 'Profile',
@@ -130,6 +169,7 @@ export default {
   },
   data () {
     return {
+      tab: ref('mails'),
     }
   },
   created () {
