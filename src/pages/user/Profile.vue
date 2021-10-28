@@ -1,39 +1,115 @@
-<template lang="pug">
-  <q-page v-if="currentUser">
+<template >
+<q-page v-if="currentUser">
     <div class="background-photo">
         <div class="default-background" v-if="showBackgroundPhoto()">
-            <q-img src="https://cdn.quasar.dev/img/material.png" style="height: 200px;">
-            </q-img>
+          <q-img src="https://cdn.quasar.dev/img/material.png" style="height: 200px;">
+          </q-img>
         </div>
         <div class="user-background" v-else>
-            <q-img :src="currentUser.backgroundPhoto" style="height: 200px;">
-            </q-img>
+          <q-img :src="currentUser.backgroundPhoto" style="height: 200px;">
+          </q-img>
         </div>
     </div>
     <div class="profile-container">
-        <div class="profile-photo text-center">
-            <div class="default-user-image" v-if="showDefaultPhoto()">
-                <q-avatar round="round" color="blue-grey-10" icon="eva-person-outline" font-size="100px" size="120px" text-color="white"></q-avatar>
+        <div class="profile-photo ">
+          <div class="default-user-image" v-if="showDefaultPhoto()">
+              <q-avatar round="round" color="blue-grey-10" icon="eva-person-outline" font-size="100px" size="120px" text-color="white"></q-avatar>
+          </div>
+
+          <div class="user-image text-left q-pl-lg" v-else>
+
+
+            <q-avatar class="q-mb-sm shadow-5" size="140px">
+              <q-img :src="currentUser.profilePhoto"></q-img>
+            </q-avatar>
+              <div class="text-weight-bold text-h6">{{ getUserData('fullName') }}</div>
+              <div class="row text-weight-bold text-h7 text-grey-6">
+                <div class='inline-flex'>
+
+                <q-btn
+                  flat
+                  dense
+                  unelevated
+                  no-caps
+                  class='q-pl-none'
+                  color="grey-6"
+                  label="@wiktorc">
+
+                </q-btn>
+
+                </div>
+                <div class='inline-flex q-mt-none q-px-xs'>  .   </div>
+                <div class='inline-flex'>
+
+                  <q-btn-dropdown
+                    flat
+                    dense
+                    unelevated
+                    no-caps
+                    color="grey-6"
+                    label="Invisible">
+                      <q-list>
+                        <q-item clickable v-close-popup @click="onItemClick">
+                          <q-item-section>
+                            <q-item-label>Invisible</q-item-label>
+                          </q-item-section>
+                        </q-item>
+
+                        <q-item clickable v-close-popup @click="onItemClick">
+                          <q-item-section>
+                            <q-item-label>Available</q-item-label>
+                          </q-item-section>
+                        </q-item>
+                      </q-list>
+                  </q-btn-dropdown>
+                </div>
+
+              </div>
+              <div class="q-pt-sm"> I click buttons</div>
+              <div class="text-weight-bold text-h7 text-grey-6"> Location poland</div>
+
+
+            <div class=''>
+              <q-btn
+                class="q-ma-md"
+                rounded
+                @click="setEditUserDialog(true); setBlur()"
+                color="white"
+                bordered
+                text-color='primary'
+                icon="settings">
+                <div class='q-pl-sm'>Edit profile</div>
+                </q-btn>
+              <q-btn
+                rounded
+                color="white"
+                bordered
+                text-color='primary'
+                icon="open_in_new"
+
+                >
+              </q-btn>
             </div>
-            <div class="user-image column q-pl-lg" v-else>
-                <q-avatar class="q-mb-sm shadow-5" size="140px">
-                    <q-img :src="currentUser.profilePhoto"></q-img>
-                </q-avatar>
-            </div>
-            <q-btn class="q-ma-md" round="round" color="primary" icon="edit" @click="setEditUserDialog(true); setBlur()"/>
+
+
+          </div>
+
+
 
         </div>
-        <div class="text-weight-bold text-h6">{{ getUserData('fullName') }}</div>
-        <div class="user-info q-mt-lg">
-            <div class="row justify-between">
-              <label class="text-h6 text-body1">Email:</label>
-              <p class="text-h6 text-body1 ">{{ getUserData('email') }}</p>
-            </div>
-            <div class="row justify-between">
-              <label class="text-body1 text-left">Mobile Number:</label>
-              <p class="text-body1 text-right">{{ getUserData('mobile') }}</p>
-            </div>
-        </div>
+
+        <!-- <div class="user-info q-mt-lg">
+          <div class="row justify-between">
+            <label class="text-h6 text-body1">Email:</label>
+            <p class="text-h6 text-body1 ">{{ getUserData('email') }}</p>
+          </div>
+          <div class="row justify-between">
+            <label class="text-body1 text-left">Mobile Number:</label>
+            <p class="text-body1 text-right">{{ getUserData('mobile') }}</p>
+          </div>
+        </div> -->
+
+
     </div>
 
     <q-dialog v-model="editUserDialog" full-height="full-height" persistent="persistent" @before-hide="setBlur">

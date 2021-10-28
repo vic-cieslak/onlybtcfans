@@ -75,7 +75,12 @@
     </q-drawer>
 
     <!-- right column search and suggestions -->
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+    <q-drawer
+      width='500'
+      show-if-above
+      v-model="rightDrawerOpen"
+      side="right"
+      bordered>
       <RightDrawerContents />
     </q-drawer>
 
