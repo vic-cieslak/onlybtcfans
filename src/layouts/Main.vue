@@ -40,7 +40,7 @@
       show-if-above
       bordered
       :mini="miniState"
-      :mini-width="100"
+      :mini-width="95"
       :width="300"
       :breakpoint="600"
     >
@@ -65,6 +65,7 @@
 
       </div>
       <LeftMenuDrawerContents
+        :mini="miniState"
         @switchDrawer="drawerLeft = !drawerLeft"
         :currentUser='currentUser'/>
 

@@ -13,7 +13,7 @@
         <q-icon size='md' name="eva-home-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items' v-if='!mini'>
         Home
       </q-item-section>
     </q-item>
@@ -29,7 +29,7 @@
         <q-icon size='md' name="eva-bell-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items'  v-if='!mini'>
         Notifications
       </q-item-section>
     </q-item>
@@ -45,7 +45,7 @@
         <q-icon size='md' name="eva-message-square-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items' v-if='!mini'>
         Messages
       </q-item-section>
     </q-item>
@@ -61,7 +61,7 @@
         <q-icon size='md' name="eva-bookmark-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items' v-if='!mini'>
         Bookmarks
       </q-item-section>
     </q-item>
@@ -77,7 +77,7 @@
         <q-icon size='md' name="eva-list-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items' v-if='!mini'>
         Lists
       </q-item-section>
     </q-item>
@@ -93,7 +93,7 @@
         <q-icon size='md' name="eva-people-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items' v-if='!mini'>
         Subscriptions
       </q-item-section>
     </q-item>
@@ -110,7 +110,7 @@
         <q-icon size='md' name="eva-person-outline" />
       </q-item-section>
 
-      <q-item-section >
+      <q-item-section  v-if='!mini'>
         My profile
       </q-item-section>
     </q-item>
@@ -124,7 +124,7 @@
         <q-icon size='md' name="eva-more-horizontal-outline" />
       </q-item-section>
 
-      <q-item-section class='menu-items'>
+      <q-item-section class='menu-items' v-if='!mini'>
         More
       </q-item-section>
     </q-item>
@@ -170,6 +170,10 @@ export default {
     },
     link: {
       type: String,
+      required: true
+    },
+    mini: {
+      type: Boolean,
       required: true
     }
   },
