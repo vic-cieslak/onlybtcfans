@@ -71,7 +71,6 @@
         :mini="miniState"
         @switchDrawer="drawerLeft = !drawerLeft"
         :currentUser='currentUser'/>
-
     </q-drawer>
 
     <!-- right column search and suggestions -->
@@ -166,10 +165,10 @@ export default {
       return $q.screen.width < switchToMini
     });
 
+
     function createPost(val) {
       console.log('its working!', val)
     }
-
     return {
       miniState,
       createPost,
@@ -180,11 +179,7 @@ export default {
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
-
       rightDrawerOpen,
-      toggleRightDrawer () {
-        rightDrawerOpen.value = !rightDrawerOpen.value
-      }
     }
   },
   methods: {

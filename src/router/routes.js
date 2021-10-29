@@ -45,6 +45,12 @@ const routes = [
         path: '/user/profile',
         name: 'UserProfile',
         component: () => import('pages/user/Profile.vue'),
+      },
+      {
+        path: '/user/settings',
+        name: 'UserSettings',
+        component: () => import('pages/user/Settings.vue'),
+        meta: { toolbarTitle: 'SETTINGS' }
       }
     ]
   },

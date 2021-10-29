@@ -33,6 +33,16 @@
                   icon="settings">
                   <div class='q-pl-sm'>Edit profile</div>
                   </q-btn>
+                <q-btn
+                  class="q-ma-md"
+                  rounded
+                  to='/user/settings'
+                  color="white"
+                  bordered
+                  text-color='primary'
+                  icon="settings">
+                  <div class='q-pl-sm'>new edit profile</div>
+                  </q-btn>
 
                 <q-btn
                   round
