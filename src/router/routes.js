@@ -52,7 +52,11 @@ const routes = [
         path: '/user/settings',
         name: 'UserSettings',
         component: () => import('pages/user/Settings.vue'),
-        meta: { toolbarTitle: 'SETTINGS' }
+        meta: { toolbarTitle: 'SETTINGS' },
+        children: [
+          { path: 'profile', component: () => import('pages/user/Test.vue') },
+          // { path: 'account', component: () => import('pages/user/account.vue') },
+        ]
       }
     ]
   },

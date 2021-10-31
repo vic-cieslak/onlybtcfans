@@ -75,7 +75,7 @@
 
     <!-- right column search and suggestions -->
     <q-drawer
-      width='500'
+      width=500
       show-if-above
       v-model="showSearchAndSuggestions"
       side="right"
@@ -136,7 +136,7 @@
 
     </q-footer>
 
-    <q-page-container class="bg-grey-1">
+    <q-page-container >
       <router-view />
     </q-page-container>
   </q-layout>
@@ -165,11 +165,10 @@ export default {
     const miniState = computed(() => {
       return $q.screen.width < switchToMini
     });
-    const route = useRoute()
 
     const showSearchAndSuggestions = computed(() => {
+      const route = useRoute()
       let showOnPages = ['HomeFeed', 'CreatePost']
-      showOnPages.includes(route.name)
       return showOnPages.includes(route.name)
     });
 

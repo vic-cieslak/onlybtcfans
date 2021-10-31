@@ -69,7 +69,7 @@
                 class="rounded-borders col-3 full-height"
                 v-if="file.__img"
                 :src="file.__img.src"
-                width='200px'
+                width=200
                 >
 
                 <q-btn
