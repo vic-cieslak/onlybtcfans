@@ -77,7 +77,7 @@
     <q-drawer
       width='500'
       show-if-above
-      v-model="rightDrawerOpen"
+      v-model="showSearchAndSuggestions"
       side="right"
       bordered>
       <RightDrawerContents />
@@ -149,6 +149,7 @@ import MobileMenuContents from 'components/MobileMenuContents'
 import LeftMenuDrawerContents from 'components/LeftMenuDrawerContents'
 import RightDrawerContents from 'components/RightDrawerContents'
 import { useQuasar } from 'quasar'
+import { useRoute } from 'vue-router'
 
 export default {
   components: {
@@ -164,12 +165,20 @@ export default {
     const miniState = computed(() => {
       return $q.screen.width < switchToMini
     });
+    const route = useRoute()
 
+    const showSearchAndSuggestions = computed(() => {
+      let showOnPages = ['HomeFeed', 'CreatePost']
+      showOnPages.includes(route.name)
+      return showOnPages.includes(route.name)
+    });
 
     function createPost(val) {
       console.log('its working!', val)
     }
+
     return {
+      showSearchAndSuggestions,
       miniState,
       createPost,
       leftDrawerOpen,
@@ -193,6 +202,8 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['currentUser']),
+
+
   },
 }
 </script>

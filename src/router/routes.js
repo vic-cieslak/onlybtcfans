@@ -9,6 +9,7 @@ const routes = [
     children: [
       {
         path: '/feed',
+        name: 'HomeFeed',
         component: () => import('pages/Feed.vue'),
       },
       {
@@ -38,6 +39,7 @@ const routes = [
       },
       {
         path: '/posts/create',
+        name: 'CreatePost',
         component: () => import('pages/CreatePost.vue'),
         meta: { toolbarTitle: 'NEW POST' }
       },
