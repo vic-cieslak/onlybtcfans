@@ -2,7 +2,7 @@
 
 This is almost 1-1 clone of onlyfans UI recreated using vuejs and http://quasar.dev 
 
-Demo: https://gracious-gates-0fc7f4.netlify.app
+Demo: https://onlybtcfans.netlify.app
 
 Key differences here are a firebase backend and bitcoin deposits/balances [WIP]
 
