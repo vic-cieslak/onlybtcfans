@@ -4,57 +4,76 @@
     <div style="width: 30%" class='column inline'>
         <q-separator color='grey-1' size='8px'/>
 
-        <q-btn size='md' color="white" no-caps class='flex-item text-h5' text-color="black" >
-            @wiktorcc
+        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+            <div class="text-grey-10">@wiktorcc</div>
             <q-space />
         </q-btn>
 
-        <q-btn size='md' color="white" no-caps class='flex-item text-h5' text-color="black" >
-            Account
-            <q-space />
-            <q-icon
-              right
-              name='eva-arrow-ios-forward-outline' />
+        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+          <div class="text-grey-10">Account</div>
+          <q-space />
+          <q-icon
+            right
+            color='black'
+            name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
-        <q-btn size='md' color="white" no-caps class='flex-item text-h5' text-color="black" >
-            Privacy
-            <q-space />
-            <q-icon
-              right
-              name='eva-arrow-ios-forward-outline' />
+        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+          <div class="text-grey-10">Privacy</div>
+          <q-space />
+          <q-icon
+            right
+            color='black'
+            name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
-        <q-btn size='md' color="white" no-caps class='flex-item text-h5' text-color="black" >
-            Notifications
-            <q-space />
-            <q-icon
-              right
-              name='eva-arrow-ios-forward-outline' />
+        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+          <div class="text-grey-10">Notifications</div>
+          <q-space />
+          <q-icon
+            right
+            color='black'
+            name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
         <q-separator color='grey-1' size='8px'/>
 
-        <q-btn size='md' color="white" no-caps class='flex-item' text-color="black" >
-            General
+        <q-btn outline color='grey-4' size='md' no-caps class='flex-item' >
+          <div class="text-grey-10">General</div>
             <q-space />
+
         </q-btn>
 
-        <q-btn size='md' color="white" no-caps class='flex-item text-h5' text-color="black" >
-            Display
-            <q-space />
-            <q-icon
-              right
-              name='eva-arrow-ios-forward-outline' />
+        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+          <div class="text-grey-10">Display</div>
+          <q-space />
+          <q-icon
+            right
+            color='black'
+            name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
-        <q-btn outline size='md'  no-caps class='flex-item text-h5' >
-            What's new
-            <q-space />
-            <q-icon
-              right
-              name='eva-arrow-ios-forward-outline' />
+        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+          <div class="text-grey-10">What's new</div>
+          <q-space />
+          <q-icon
+            right
+            color='black'
+            name='eva-arrow-ios-forward-outline' />
         </q-btn>
+
+        <!-- <q-btn
+          disabled
+          style='height: 200px;'
+          outline
+          color='grey-4'
+          size='md'
+          no-caps
+          class='flex-item text-h5 no-pointer-events'>
+          <div class="text-grey-10"></div>
+          <q-space />
+        </q-btn> -->
+
     </div>
 
     <div class='column inline'>
