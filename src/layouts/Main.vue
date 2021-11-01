@@ -77,7 +77,7 @@
     <q-drawer
       width=500
       show-if-above
-      v-model="showSearchAndSuggestions"
+      v-if="searchAndSuggestionsOpen"
       side="right"
       bordered>
       <RightDrawerContents />
@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import { computed, ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { mapGetters, mapActions } from 'vuex'
 import MobileMenuContents from 'components/MobileMenuContents'
 import LeftMenuDrawerContents from 'components/LeftMenuDrawerContents'
@@ -160,24 +160,31 @@ export default {
   setup () {
     const leftDrawerOpen = ref(false)
     const rightDrawerOpen = ref(false)
+    let searchAndSuggestionsOpen = ref(false)
     const switchToMini = 1300
     const $q = useQuasar()
     const miniState = computed(() => {
       return $q.screen.width < switchToMini
     });
 
-    const showSearchAndSuggestions = computed(() => {
-      const route = useRoute()
-      let showOnPages = ['HomeFeed', 'CreatePost']
-      return showOnPages.includes(route.name)
-    });
+    // show Suggestions and Search drawer on certain pages
+    const route = useRoute()
+    let showSuggestionsOnPages = ['HomeFeed', 'CreatePost']
+    watch(route, (currentRoute, oldRoute) => {
+      if (showSuggestionsOnPages.includes(currentRoute.name)) {
+        searchAndSuggestionsOpen.value = true
+      } else {
+        searchAndSuggestionsOpen.value = false
+      }
+    })
+    ////
 
     function createPost(val) {
       console.log('its working!', val)
     }
 
     return {
-      showSearchAndSuggestions,
+      searchAndSuggestionsOpen,
       miniState,
       createPost,
       leftDrawerOpen,
