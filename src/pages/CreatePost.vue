@@ -17,7 +17,7 @@
       label="Custom header"
       @uploaded="addUrlToPostData"
       multiple
-      class='bg-grey-1 full-width'
+      class='bg-white full-width'
       color="primary"
       square
       :meta="meta"
@@ -28,7 +28,7 @@
     >
 
       <template v-slot:header="scope">
-        <div class="row no-wrap items-center q-pa-none q-gutter-xs bg-grey-1">
+        <div class="row no-wrap items-center q-pa-none q-gutter-xs bg-white">
           <q-btn
             v-if="scope.canAddFiles"
             type="a"
