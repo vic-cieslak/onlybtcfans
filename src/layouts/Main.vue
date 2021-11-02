@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHr LpR fFf">
+  <q-layout view="lHr LpR fFf" >
     <q-header
       bordered
       class="bg-white text-grey-10">
@@ -16,6 +16,15 @@
           label='post'
           rounded
           @click='createPost'
+          color="primary" />
+
+        <q-btn
+          v-if="$route.fullPath == '/user/settings/profile'"
+          unelevated
+          label='Save'
+          rounded
+          @click='submitProfileUpdate'
+          type='submit'
           color="primary" />
 
       </q-toolbar>

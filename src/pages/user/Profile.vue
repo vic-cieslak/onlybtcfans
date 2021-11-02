@@ -26,22 +26,12 @@
                 <q-btn
                   class="q-ma-md"
                   rounded
-                  @click="setEditUserDialog(true); setBlur()"
-                  color="white"
-                  bordered
-                  text-color='primary'
-                  icon="settings">
-                  <div class='q-pl-sm'>Edit profile</div>
-                  </q-btn>
-                <q-btn
-                  class="q-ma-md"
-                  rounded
                   to='/user/settings/profile'
                   color="white"
                   bordered
                   text-color='primary'
                   icon="settings">
-                  <div class='q-pl-sm'>new edit profile</div>
+                  <div class='q-pl-sm'>edit profile</div>
                   </q-btn>
 
                 <q-btn

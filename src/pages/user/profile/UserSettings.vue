@@ -169,7 +169,7 @@ export default {
       this.photoType = ''
     },
     async saveUserData () {
-      const { currentUser, email, fullName, mobile } = this
+      const { currentUser, email, fullName, mobile, username } = this
 
       this.$q.loading.show({
         message: 'Updating your data, please stand by...',
@@ -181,6 +181,7 @@ export default {
           id: currentUser.id,
           email,
           fullName,
+          username,
           mobile
         })
       } catch (err) {

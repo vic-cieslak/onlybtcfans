@@ -1,7 +1,7 @@
 <template>
-  <q-page>
+  <q-page class='fit row wrap justify-start'>
 
-    <div style="width: 30%" class='column inline'>
+    <div style="overflow: auto; min-width: 300px; max-width: 300px;" class='column inline col-grow'>
         <q-separator color='grey-1' size='8px'/>
 
         <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
@@ -85,9 +85,8 @@
 
     </div>
 
-    <div class='column inline'>
+    <div class='column col-grow' style="overflow: auto;">
       <router-view />
-
     </div>
 
   </q-page>
