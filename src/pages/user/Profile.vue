@@ -36,7 +36,7 @@
                 <q-btn
                   class="q-ma-md"
                   rounded
-                  to='/user/settings'
+                  to='/user/settings/profile'
                   color="white"
                   bordered
                   text-color='primary'
