@@ -24,7 +24,7 @@
               </q-avatar>
               <div class='inline-flex q-pr-lg'>
                 <q-btn
-                  class="q-ma-md"
+                  class="q-ma-xs"
                   rounded
                   to='/user/settings/profile'
                   color="white"
@@ -57,7 +57,8 @@
                   no-caps
                   class='q-pl-none'
                   color="grey-6"
-                  label="@wiktorc">
+                  >
+                  {{ getUserData('username') }}
 
                 </q-btn>
 
@@ -89,9 +90,9 @@
                 </div>
 
               </div>
-              <div class="q-pt-sm"> I click buttons</div>
+              <div class="q-pt-sm"> {{ getUserData('bio') }}</div>
               <div class="text-weight-bold text-h7 text-grey-6 q-pb-lg">
-                 Location poland</div>
+                 {{ getUserData('location') }}</div>
           </div>
 
 

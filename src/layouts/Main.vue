@@ -2,11 +2,11 @@
   <q-layout view="lHr LpR fFf" >
     <q-header
       bordered
-      class="bg-white text-grey-10">
+      class="bg-white text-grey-10 q-pl-none">
       <q-toolbar >
         <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
 
-        <q-toolbar-title style="font-size: 19px;" class="text-bold q-ml-sm">
+        <q-toolbar-title style="font-size: 19px;" class="text-bold q-pl-none">
           <q-btn
             round
             dense
@@ -237,8 +237,6 @@ export default {
     font-size: 30px
 .q-header
   .q-toolbar__title
-    @media (max-width: $breakpoint-xs-max)
-      text-align: center
     font-size: 30px
   .q-toolbar
     @media (min-width: $breakpoint-sm-min)
