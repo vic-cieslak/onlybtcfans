@@ -9,7 +9,16 @@
             <q-space />
         </q-btn>
 
-        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+        <q-btn :to="{name: 'SettingsProfile'}" outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+          <div class="text-grey-10">Profile</div>
+          <q-space />
+          <q-icon
+            right
+            color='black'
+            name='eva-arrow-ios-forward-outline' />
+        </q-btn>
+
+        <q-btn :to="{name: 'SettingsAccount'}" outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
           <div class="text-grey-10">Account</div>
           <q-space />
           <q-icon
@@ -18,7 +27,7 @@
             name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
-        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+        <q-btn :to="{name: 'SettingsPrivacy'}" outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
           <div class="text-grey-10">Privacy</div>
           <q-space />
           <q-icon
@@ -27,7 +36,7 @@
             name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
-        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+        <q-btn :to="{name: 'SettingsNotifications'}" outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
           <div class="text-grey-10">Notifications</div>
           <q-space />
           <q-icon
@@ -44,7 +53,7 @@
 
         </q-btn>
 
-        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+        <q-btn :to="{name: 'SettingsDisplay'}" outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
           <div class="text-grey-10">Display</div>
           <q-space />
           <q-icon
@@ -53,7 +62,7 @@
             name='eva-arrow-ios-forward-outline' />
         </q-btn>
 
-        <q-btn outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
+        <q-btn :to="{name: 'SettingsNewFeatures'}" outline color='grey-4' size='md'  no-caps class='flex-item text-h5' >
           <div class="text-grey-10">What's new</div>
           <q-space />
           <q-icon
@@ -77,6 +86,7 @@
     </div>
 
     <div class='column inline'>
+      <router-view />
 
     </div>
 

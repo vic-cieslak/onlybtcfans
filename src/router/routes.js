@@ -54,7 +54,12 @@ const routes = [
         component: () => import('pages/user/Settings.vue'),
         meta: { toolbarTitle: 'SETTINGS' },
         children: [
-          { path: 'profile', component: () => import('pages/user/Test.vue') },
+          { path: 'account', name: 'SettingsAccount', component: () => import('pages/user/Account.vue') },
+          { path: 'profile', name: 'SettingsProfile', component: () => import('pages/user/Profile.vue') },
+          { path: 'privacy', name: 'SettingsPrivacy', component: () => import('pages/user/Privacy.vue') },
+          { path: 'NewFeatures', name: 'SettingsNewFeatures', component: () => import('pages/user/NewFeatures.vue') },
+          { path: 'display', name: 'SettingsDisplay', component: () => import('pages/user/Display.vue') },
+          { path: 'notifications', name: 'SettingsNotifications', component: () => import('pages/user/Notifications.vue') },
           // { path: 'account', component: () => import('pages/user/account.vue') },
         ]
       }
