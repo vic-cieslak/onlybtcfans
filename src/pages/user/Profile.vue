@@ -124,8 +124,6 @@
                  {{ getUserData('location') }}</div>
           </div>
 
-
-
         </div>
 
         <!-- <div class="user-info q-mt-lg">

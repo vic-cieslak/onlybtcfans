@@ -131,10 +131,11 @@
         </section>
         <div class="row justify-between q-my-lg q-px-md absolute-bottom-right">
 
-          <q-page-sticky position="bottom-right" :offset="[18, 18]">
+          <q-page-sticky position="bottom-right" :offset="[18, 18]" style="z-index: 3">
             <q-btn
               size='lg'
               rounded
+              persistent
               style="min-width:6em;"
               type="submit"
               label="SAVE"
