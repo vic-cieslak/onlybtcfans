@@ -56,7 +56,6 @@
                   </span>
             </div>
         </div>
-        <!-- <section class="user-info"> -->
         <section class='q-pl-md'>
             <div class="row justify-between items-center q-mb-lg">
                 <q-input
@@ -181,14 +180,14 @@ export default {
   data () {
     const currentUser = this.$store.state.user.currentUser
     return {
-      email: currentUser.email,
-      username: currentUser.username,
-      website_url: currentUser.website_url,
-      location: currentUser.location,
-      amazon_wishlist: currentUser.amazon_wishlist,
-      fullName: currentUser.fullName,
-      mobile: currentUser.mobile,
-      bio: currentUser.bio,
+      email: currentUser.email || '',
+      username: currentUser.username || '',
+      website_url: currentUser.website_url || '',
+      location: currentUser.location || '',
+      amazon_wishlist: currentUser.amazon_wishlist || '',
+      fullName: currentUser.fullName || '',
+      mobile: currentUser.mobile || '',
+      bio: currentUser.bio || '',
       photoType: '',
       photoUpload: false
     }

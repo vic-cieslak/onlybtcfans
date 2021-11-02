@@ -13,16 +13,15 @@
     <div class="profile-container ">
         <div class="profile-photo">
           <div class="default-user-image" v-if="showDefaultPhoto()">
-              <q-avatar round="round" color="blue-grey-10" icon="eva-person-outline" font-size="100px" size="120px" text-color="white"></q-avatar>
-          </div>
-
-          <div class="user-image text-left q-pl-lg" v-else>
-
-            <div class='row justify-between items-end'>
-              <q-avatar class="q-mb-sm inline-flex shadow-5" size="140px">
-                <q-img :src="currentUser.profilePhoto"></q-img>
-              </q-avatar>
-              <div class='inline-flex q-pr-lg'>
+              <q-avatar
+                class='inline-flex'
+                round="round"
+                color="blue-grey-10"
+                icon="eva-person-outline"
+                font-size="100px"
+                size="120px"
+                text-color="white"></q-avatar>
+              <div class='inline-flex q-pr-lg q-pa-lg'>
                 <q-btn
                   class="q-ma-xs"
                   rounded
@@ -43,6 +42,36 @@
                   >
                 </q-btn>
               </div>
+          </div>
+
+          <div class="user-image text-left q-pl-lg" v-else>
+
+            <div class='row justify-between items-end'>
+              <q-avatar class="q-mb-sm inline-flex shadow-5" size="140px">
+                <q-img :src="currentUser.profilePhoto"></q-img>
+
+              </q-avatar>
+                <div class='inline-flex q-pr-lg'>
+                  <q-btn
+                    class="q-ma-xs"
+                    rounded
+                    to='/user/settings/profile'
+                    color="white"
+                    bordered
+                    text-color='primary'
+                    icon="settings">
+                    <div class='q-pl-sm'>edit profile</div>
+                    </q-btn>
+
+                  <q-btn
+                    round
+                    color="white"
+                    bordered
+                    text-color='primary'
+                    icon="open_in_new"
+                    >
+                  </q-btn>
+                </div>
 
             </div>
 
