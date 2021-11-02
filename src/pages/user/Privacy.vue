@@ -1,6 +1,5 @@
 <template>
-<div>Privacy</div>
-
+  <div class='text-center q-pt-xl text-bold'> Privacy - Work in progress</div>
 </template>
 
 <script>

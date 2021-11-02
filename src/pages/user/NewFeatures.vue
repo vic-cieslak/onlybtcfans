@@ -1,6 +1,5 @@
 <template>
-<div>new new</div>
-
+  <div class='text-center q-pt-xl text-bold'>New Features - Work in progress</div>
 </template>
 
 <script>

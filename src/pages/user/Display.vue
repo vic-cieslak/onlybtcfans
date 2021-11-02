@@ -1,6 +1,5 @@
 <template>
-<div>display</div>
-
+  <div class='text-center q-pt-xl text-bold'>Display - Work in progress</div>
 </template>
 
 <script>

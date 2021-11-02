@@ -1,5 +1,5 @@
 <template>
-<div>Accountadasd</div>
+  <div class='text-center q-pt-xl text-bold'> Account - Work in progress</div>
 
 </template>
 
