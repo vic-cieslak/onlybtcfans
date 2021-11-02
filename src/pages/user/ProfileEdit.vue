@@ -132,11 +132,15 @@
         </section>
         <div class="row justify-between q-my-lg q-px-md absolute-bottom-right">
 
+          <q-page-sticky position="bottom-right" :offset="[18, 18]">
             <q-btn
-              color="primary"
+              size='lg'
+              rounded
+              style="min-width:6em;"
               type="submit"
               label="SAVE"
-              style="min-width:6em;" />
+              color="primary" />
+          </q-page-sticky>
 
         </div>
     </q-form>

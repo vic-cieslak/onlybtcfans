@@ -22,6 +22,7 @@
           v-if="$route.fullPath == '/user/settings/profile'"
           unelevated
           label='Save'
+          disabled
           rounded
           type='submit'
           color="primary" />
