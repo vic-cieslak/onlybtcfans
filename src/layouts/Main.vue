@@ -7,6 +7,14 @@
         <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
 
         <q-toolbar-title style="font-size: 19px;" class="text-bold q-ml-sm">
+          <q-btn
+            round
+            dense
+            v-if="$route.fullPath != '/feed'"
+            @click='$router.back()'
+            flat
+            icon='eva-arrow-back'
+            color="primary" />
           {{ $route.meta.toolbarTitle }}
         </q-toolbar-title>
 
