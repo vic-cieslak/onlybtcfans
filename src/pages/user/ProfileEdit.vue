@@ -1,6 +1,6 @@
 <template>
   <div class="user-settings full-width" v-if="currentUser">
-    <q-form class="full-height" id='profileForm' @submit="saveUserData">
+    <q-form class="full-height" @submit="saveUserData">
         <div class="background-photo">
             <div class="default-background" v-if="showBackgroundPhoto()">
                 <q-img

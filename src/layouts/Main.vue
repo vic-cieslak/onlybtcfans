@@ -23,7 +23,6 @@
           unelevated
           label='Save'
           rounded
-          @click='submitProfileUpdate'
           type='submit'
           color="primary" />
 
@@ -208,7 +207,6 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['logoutUser']),
-
     showDefaultPhoto () {
       return this.currentUser.profilePhoto === '' ||
         this.currentUser.profilePhoto === null ||
