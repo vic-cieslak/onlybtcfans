@@ -38,7 +38,6 @@
       </q-toolbar>
     </q-header>
 
-
     <!-- ------ mobile drawer------- -->
     <q-drawer
       v-model="drawerLeft"
@@ -177,23 +176,35 @@ export default {
   setup () {
     const leftDrawerOpen = ref(false)
     const rightDrawerOpen = ref(false)
-    let searchAndSuggestionsOpen = ref(false)
+    // let searchAndSuggestionsOpen = ref(false)
     const switchToMini = 1300
     const $q = useQuasar()
     const miniState = computed(() => {
       return $q.screen.width < switchToMini
     });
 
-    // show Suggestions and Search drawer on certain pages
-    const route = useRoute()
-    let showSuggestionsOnPages = ['HomeFeed', 'CreatePost']
-    watch(route, (currentRoute, oldRoute) => {
-      if (showSuggestionsOnPages.includes(currentRoute.name)) {
-        searchAndSuggestionsOpen.value = true
+    let searchAndSuggestionsOpen = computed(() => {
+      const route = useRoute()
+      let showSuggestionsOnPages = ['HomeFeed', 'CreatePost']
+      if (showSuggestionsOnPages.includes(route.name)) {
+        return true
       } else {
-        searchAndSuggestionsOpen.value = false
+        return false
       }
-    })
+
+    });
+
+    // show Suggestions and Search drawer on certain pages
+    // const route = useRoute()
+    // let showSuggestionsOnPages = ['HomeFeed', 'CreatePost']
+    // watch(route, (currentRoute, oldRoute) => {
+    //   console.log('wtf')
+    //   if (showSuggestionsOnPages.includes(currentRoute.name)) {
+    //     searchAndSuggestionsOpen.value = true
+    //   } else {
+    //     searchAndSuggestionsOpen.value = false
+    //   }
+    // })
     ////
 
     function createPost(val) {
