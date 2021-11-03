@@ -73,7 +73,7 @@
         <q-item
           clickable
           v-ripple
-          to='/my/settings'
+          :to="{name: 'UserSettings'}"
           :active="link === 'settings'"
           @click="link = 'settings'"
           active-class="text-black">
