@@ -1,6 +1,7 @@
 # OnlyBtcFans - onlyfans clone without stupid KYC 
 
 This is almost 1-1 clone of onlyfans UI recreated using vuejs and http://quasar.dev 
+App is optimized for desktop and mobile. 
 
 Demo: https://onlybtcfans.netlify.app
 
