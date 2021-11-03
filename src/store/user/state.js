@@ -1,4 +1,6 @@
 export default {
   currentUser: null,
-  editUserDialog: false
+  editUserDialog: false,
+  firebaseToken: '',
+  streamToken: ''
 }

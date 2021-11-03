@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { store } from '../../store'
+import { getStreamToken } from '../getstream/token'
 
 // TODO DRY with google
 /**
@@ -17,9 +19,7 @@ export const loginWithTwitter = () => {
     // The signed-in user info.
     var user = result.user;
 
-    // This gives you a Facebook Access Token.
-    //You can use it to access the Facebook API.
-    // var accessToken = credential.accessToken;
+    getStreamToken(user)
     return user
     // ...
   })

@@ -31,3 +31,9 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+# GCloud
+
+/functions/service_token.json
+
+/getstream-dev

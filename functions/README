@@ -1,0 +1,4 @@
+1.You need to go to firebase console and create a service account
+for the project.
+2. Download json file here and name it service_token.json.
+3. Configure env var GOOGLE_APPLICATION_CREDENTIALS=service_token.json

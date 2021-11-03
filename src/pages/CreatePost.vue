@@ -17,7 +17,7 @@
       label="Custom header"
       @uploaded="addUrlToPostData"
       multiple
-      class='row bg-grey-1'
+      class='bg-white full-width'
       color="primary"
       square
       :meta="meta"
@@ -25,12 +25,10 @@
       auto-upload
       accept=".jpg, image/*, video/*"
       flat
-      style="max-width: 300px"
     >
 
-
-      <template v-slot:header="scope" >
-        <div class="row no-wrap items-center q-pa-none q-gutter-xs bg-grey-1">
+      <template v-slot:header="scope">
+        <div class="row no-wrap items-center q-pa-none q-gutter-xs bg-white">
           <q-btn
             v-if="scope.canAddFiles"
             type="a"
@@ -55,66 +53,63 @@
       </template>
 
 
-
       <template v-slot:list="scope">
+        <q-linear-progress
+          v-if='scope.canUpload'
+          :value="scope.uploadProgressLabel"
+          class="q-my-md" />
 
-          <q-linear-progress
-            v-if='scope.canUpload'
-            :value="scope.uploadProgressLabel"
-            class="q-my-md" />
+        <q-scroll-area style="height: 250px" >
+          <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
 
-          <q-scroll-area style="height: 250px" >
-            <div class="row fit justify-start items-center q-gutter-xs q-col-gutter no-wrap">
+            <template v-for="file in scope.files" :key="file.name">
 
-              <template v-for="file in scope.files" :key="file.name">
+              <!-- bad code ahead  -->
+              <q-img
+                class="rounded-borders col-3 full-height"
+                v-if="file.__img"
+                :src="file.__img.src"
+                width=200
+                >
 
-                <!-- bad code ahead  -->
-                <q-img
-                  class="rounded-borders col-3 full-height"
-                  v-if="file.__img"
-                  :src="file.__img.src"
-                  width='200px'
-                  >
+                <q-btn
+                  class="float-right all-pointer-events"
+                  size="lg"
+                  flat
+                  dense
+                  round
+                  color='primary'
+                  icon="eva-close-circle"
+                  @click='removeFile(scope, file)'
+                />
 
-                  <q-btn
-                    class="float-right all-pointer-events"
-                    size="lg"
-                    flat
-                    dense
-                    round
-                    color='primary'
-                    icon="eva-close-circle"
-                    @click='removeFile(scope, file)'
-                  />
+              </q-img>
 
-                </q-img>
+              <q-img
+                class="rounded-borders col-3 full-height"
+                v-else
+                src="~assets/Video-Placeholder.png"
+                width='200px'
+                >
 
-                <q-img
-                  class="rounded-borders col-3 full-height"
-                  v-else
-                  src="~assets/Video-Placeholder.png"
-                  width='200px'
-                  >
+                <q-btn
+                  class="float-right all-pointer-events"
+                  size="lg"
+                  flat
+                  dense
+                  round
+                  color='primary'
+                  icon="eva-close-circle"
+                  @click='scope.removeThisFile(file)'
+                />
 
-                  <q-btn
-                    class="float-right all-pointer-events"
-                    size="lg"
-                    flat
-                    dense
-                    round
-                    color='primary'
-                    icon="eva-close-circle"
-                    @click='scope.removeThisFile(file)'
-                  />
+              </q-img>
+              <!-- bad code ends  -->
 
-                </q-img>
-                <!-- bad code ends  -->
+            </template>
 
-              </template>
-
-            </div>
-          </q-scroll-area>
-
+          </div>
+        </q-scroll-area>
 
       </template>
     </PostPhotoUploader>

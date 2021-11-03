@@ -1,5 +1,7 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { store } from '../../store'
+import { getStreamToken } from '../getstream/token'
 
 // should be more DRY
 export const loginWithGoogle = () => {
@@ -9,13 +11,15 @@ export const loginWithGoogle = () => {
   .signInWithPopup(provider)
   .then((result) => {
     /** @type {firebase.auth.OAuthCredential} */
-    var credential = result.credential;
+    // var credential = result.credential;
     // The signed-in user info.
     var user = result.user;
 
     // This gives you a Google Access Token.
     //You can use it to access the Google API.
-    var accessToken = credential.accessToken;
+    // var accessToken = credential.accessToken;
+
+    getStreamToken(user)
 
     return user
     // ...

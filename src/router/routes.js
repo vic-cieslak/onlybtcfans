@@ -9,6 +9,7 @@ const routes = [
     children: [
       {
         path: '/feed',
+        name: 'HomeFeed',
         component: () => import('pages/Feed.vue'),
       },
       {
@@ -38,13 +39,29 @@ const routes = [
       },
       {
         path: '/posts/create',
+        name: 'CreatePost',
         component: () => import('pages/CreatePost.vue'),
-        meta: { toolbarTitle: 'ADD POST' }
+        meta: { toolbarTitle: 'NEW POST' }
       },
       {
         path: '/user/profile',
         name: 'UserProfile',
         component: () => import('pages/user/Profile.vue'),
+      },
+      {
+        path: '/user/settings',
+        name: 'UserSettings',
+        component: () => import('pages/user/Settings.vue'),
+        meta: { toolbarTitle: 'SETTINGS' },
+        children: [
+          { path: 'account', name: 'SettingsAccount', component: () => import('pages/user/Account.vue') },
+          { path: 'profile', name: 'SettingsProfile', component: () => import('pages/user/ProfileEdit.vue') },
+          { path: 'privacy', name: 'SettingsPrivacy', component: () => import('pages/user/Privacy.vue') },
+          { path: 'NewFeatures', name: 'SettingsNewFeatures', component: () => import('pages/user/NewFeatures.vue') },
+          { path: 'display', name: 'SettingsDisplay', component: () => import('pages/user/Display.vue') },
+          { path: 'notifications', name: 'SettingsNotifications', component: () => import('pages/user/Notifications.vue') },
+          // { path: 'account', component: () => import('pages/user/account.vue') },
+        ]
       }
     ]
   },

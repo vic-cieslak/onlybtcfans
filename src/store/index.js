@@ -1,6 +1,7 @@
 import { store as store_init } from 'quasar/wrappers'
 import { createStore } from 'vuex'
 import { vuexfireMutations } from 'vuexfire'
+import createPersistedState from 'vuex-persistedstate'
 
 import auth from './auth'
 import user from './user'
@@ -24,7 +25,7 @@ export default store_init(function (/* { ssrContext } */) {
     mutations: {
       ...vuexfireMutations
     },
-
+    plugins: [createPersistedState()],
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only
     strict: process.env.DEBUGGING

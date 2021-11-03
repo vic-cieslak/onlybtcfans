@@ -1,5 +1,8 @@
 import firebase from 'firebase/app'
 import 'firebase/auth'
+import { store } from '../../store'
+// import axios from 'axios'
+import { getStreamToken } from '../getstream/token'
 
 /**
  * https://firebase.google.com/docs/reference/js/firebase.auth.Auth#createuserwithemailandpassword
@@ -9,6 +12,12 @@ import 'firebase/auth'
  */
 export const createUserWithEmail = async (email, password) => {
   return firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((result) => {
+      var user = result.user;
+
+      getStreamToken(user)
+      return user.uid
+    })
 }
 
 /**
@@ -19,4 +28,8 @@ export const createUserWithEmail = async (email, password) => {
  */
 export const loginWithEmail = (email, password) => {
   return firebase.auth().signInWithEmailAndPassword(email, password)
+    .then((result) => {
+      var user = result.user;
+      getStreamToken(user)
+    })
 }

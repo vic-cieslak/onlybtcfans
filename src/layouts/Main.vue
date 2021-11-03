@@ -1,12 +1,20 @@
 <template>
-  <q-layout view="lHr lpR fFf">
+  <q-layout view="lHr LpR fFf" >
     <q-header
       bordered
-      class="bg-white text-grey-10">
+      class="bg-white text-grey-10 q-pl-none">
       <q-toolbar >
         <!-- <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" /> -->
 
-        <q-toolbar-title style="font-size: 19px;" class="text-bold q-ml-sm">
+        <q-toolbar-title style="font-size: 19px;" class="text-bold q-pl-none">
+          <q-btn
+            round
+            dense
+            v-if="$route.fullPath != '/feed'"
+            @click='$router.back()'
+            flat
+            icon='eva-arrow-back'
+            color="primary" />
           {{ $route.meta.toolbarTitle }}
         </q-toolbar-title>
 
@@ -15,11 +23,20 @@
           unelevated
           label='post'
           rounded
+          @click='createPost'
+          color="primary" />
+
+        <q-btn
+          v-if="$route.fullPath == '/user/settings/profile'"
+          unelevated
+          label='Save'
+          disabled
+          rounded
+          type='submit'
           color="primary" />
 
       </q-toolbar>
     </q-header>
-
 
     <!-- ------ mobile drawer------- -->
     <q-drawer
@@ -38,32 +55,47 @@
       v-model="leftDrawerOpen"
       show-if-above
       bordered
-      :breakpoint="900"
+      :mini="miniState"
+      :mini-width="95"
+      :width="300"
+      :breakpoint="600"
     >
       <!-- REFACTOR this could be refactored as it repeats twice -->
       <div v-if="currentUser" @click="drawerLeft = !drawerLeft">
-        <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
-            <q-avatar
-              round="round"
-              color="blue-grey-10"
-              icon="eva-person-outline"
-              size="lg"
-              text-color="white"></q-avatar>
-        </div>
-        <div class="q-pa-lg grow" v-else>
-            <q-avatar class="q-mb-sm shadow-5" size="lg">
-                <q-img :src="currentUser.profilePhoto"></q-img>
-            </q-avatar>
-        </div>
+        <q-list padding class="q-pt-lg q-pl-sm">
+
+          <div class="q-pl-lg grow" v-if="showDefaultPhoto()">
+              <q-avatar
+                round="round"
+                color="blue-grey-10"
+                icon="eva-person-outline"
+                size="lg"
+                text-color="white"></q-avatar>
+          </div>
+          <div
+            class="grow"
+            v-bind:class="{ 'q-pl-lg': miniState, 'q-pl-sm': !miniState }"
+            v-else>
+              <q-avatar class="q-mb-sm shadow-5" size="lg">
+                  <q-img :src="currentUser.profilePhoto"></q-img>
+              </q-avatar>
+          </div>
+        </q-list>
+
       </div>
       <LeftMenuDrawerContents
+        :mini="miniState"
         @switchDrawer="drawerLeft = !drawerLeft"
         :currentUser='currentUser'/>
-
     </q-drawer>
 
     <!-- right column search and suggestions -->
-    <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>
+    <q-drawer
+      width=430
+      show-if-above
+      v-if="searchAndSuggestionsOpen"
+      side="right"
+      bordered>
       <RightDrawerContents />
     </q-drawer>
 
@@ -98,7 +130,7 @@
         <!-- DRY IT MAKE IT INTO IMPORTABLE COMPONENT -->
         <div
           v-if="currentUser"
-          class='q-pt-sm'
+          class='q-pt-xs q-pr-xs'
           @click="drawerLeft = !drawerLeft">
 
           <div class="q-pa-lg grow" v-if="showDefaultPhoto()">
@@ -120,18 +152,20 @@
 
     </q-footer>
 
-    <q-page-container class="bg-grey-1">
+    <q-page-container >
       <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { computed, ref, watch } from "vue";
 import { mapGetters, mapActions } from 'vuex'
 import MobileMenuContents from 'components/MobileMenuContents'
 import LeftMenuDrawerContents from 'components/LeftMenuDrawerContents'
 import RightDrawerContents from 'components/RightDrawerContents'
+import { useQuasar } from 'quasar'
+import { useRoute } from 'vue-router'
 
 export default {
   components: {
@@ -142,9 +176,45 @@ export default {
   setup () {
     const leftDrawerOpen = ref(false)
     const rightDrawerOpen = ref(false)
+    // let searchAndSuggestionsOpen = ref(false)
+    const switchToMini = 1300
+    const $q = useQuasar()
+    const miniState = computed(() => {
+      return $q.screen.width < switchToMini
+    });
 
+    let searchAndSuggestionsOpen = computed(() => {
+      const route = useRoute()
+      let showSuggestionsOnPages = ['HomeFeed', 'CreatePost']
+      if (showSuggestionsOnPages.includes(route.name)) {
+        return true
+      } else {
+        return false
+      }
+
+    });
+
+    // show Suggestions and Search drawer on certain pages
+    // const route = useRoute()
+    // let showSuggestionsOnPages = ['HomeFeed', 'CreatePost']
+    // watch(route, (currentRoute, oldRoute) => {
+    //   console.log('wtf')
+    //   if (showSuggestionsOnPages.includes(currentRoute.name)) {
+    //     searchAndSuggestionsOpen.value = true
+    //   } else {
+    //     searchAndSuggestionsOpen.value = false
+    //   }
+    // })
+    ////
+
+    function createPost(val) {
+      console.log('its working!', val)
+    }
 
     return {
+      searchAndSuggestionsOpen,
+      miniState,
+      createPost,
       leftDrawerOpen,
       drawerLeft: ref(false),
       link: ref(''),
@@ -152,16 +222,11 @@ export default {
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
       },
-
       rightDrawerOpen,
-      toggleRightDrawer () {
-        rightDrawerOpen.value = !rightDrawerOpen.value
-      }
     }
   },
   methods: {
     ...mapActions('auth', ['logoutUser']),
-
     showDefaultPhoto () {
       return this.currentUser.profilePhoto === '' ||
         this.currentUser.profilePhoto === null ||
@@ -170,6 +235,8 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['currentUser']),
+
+
   },
 }
 </script>
@@ -181,8 +248,6 @@ export default {
     font-size: 30px
 .q-header
   .q-toolbar__title
-    @media (max-width: $breakpoint-xs-max)
-      text-align: center
     font-size: 30px
   .q-toolbar
     @media (min-width: $breakpoint-sm-min)

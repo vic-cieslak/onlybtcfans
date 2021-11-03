@@ -56,52 +56,92 @@
                   </span>
             </div>
         </div>
-        <section class="user-info">
-            <h6 class="q-mt-none q-mb-md text-center">Edit Your Profile</h6>
+        <section class='q-pl-md'>
             <div class="row justify-between items-center q-mb-lg">
-              <label class="col-3" for="fullName">Name</label>
                 <q-input
+                  label="Username"
+                  stack-label
+                  outlined
+                  class="col"
+                  id="username"
+                  v-model="username"
+                  type="text"/>
+            </div>
+            <div class="row justify-between items-center q-mb-lg">
+                <q-input
+                  label="Display name"
+                  stack-label
+                  outlined
                   class="col"
                   id="fullName"
                   v-model="fullName"
-                  borderless="borderless"
-                  dense="dense"
                   type="text"/>
             </div>
+            <div class="row justify-between items-center q-mb-lg">
+                <q-input
+                  label="Bio"
+                  stack-label
+                  outlined
+                  type="textarea"
+                  class="col"
+                  id="bio"
+                  v-model="bio"
+                  />
+            </div>
+            <div class="row justify-between items-center q-mb-lg">
+                <q-input
+                  label="Location"
+                  stack-label
+                  outlined
+                  class="col"
+                  id="location"
+                  v-model="location"
+                  type="text"/>
+            </div>
+            <div class="row justify-between items-center q-mb-lg">
+                <q-input
+                  label="Website URL"
+                  stack-label
+                  outlined
+                  class="col"
+                  id="website_url"
+                  v-model="website_url"
+                  type="text"/>
+            </div>
+            <div class="row justify-between items-center q-mb-lg">
+                <q-input
+                  label="Amazon Wishlist"
+                  stack-label
+                  outlined
+                  class="col"
+                  id="amazon_wishlist"
+                  v-model="amazon_wishlist"
+                  type="text"/>
+            </div>
+<!--
             <div class="row justify-between items-center q-mb-lg">
               <label class="col-3" for="email">Email</label>
                 <q-input
                   class="col"
                   id="email"
+                  outlined
                   v-model="email"
-                  borderless="borderless"
-                  dense="dense"
                   type="text"/>
-            </div>
-            <div class="row justify-between items-center q-mb-lg">
-              <label class="col-3" for="mobile">Mobile</label>
-                <q-input
-                  class="col"
-                  id="mobile"
-                  v-model="mobile"
-                  borderless="borderless"
-                  dense="dense"
-                  hint="+1(###) ###-####"
-                  mask="+#(###) ###-####"
-                  type="text"/>
-            </div>
+            </div> -->
         </section>
-        <div class="row justify-between q-my-lg q-px-md absolute-bottom">
+        <div class="row justify-between q-my-lg q-px-md absolute-bottom-right">
+
+          <q-page-sticky position="bottom-right" :offset="[18, 18]" style="z-index: 3">
             <q-btn
-              color="primary"
-              label="CANCEL"
+              size='lg'
+              rounded
+              persistent
               style="min-width:6em;"
-              @click="setEditUserDialog(false)" />
-            <q-btn
-              color="primary"
               type="submit"
               label="SAVE"
-              style="min-width:6em;" />
+              color="primary" />
+          </q-page-sticky>
+
         </div>
     </q-form>
     <q-dialog
@@ -131,7 +171,7 @@
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
-import FirebaseUploader from '../../../components/FirebaseUploader.vue'
+import FirebaseUploader from '../../components/FirebaseUploader.vue'
 
 export default {
   name: 'UserSettings',
@@ -141,9 +181,14 @@ export default {
   data () {
     const currentUser = this.$store.state.user.currentUser
     return {
-      email: currentUser.email,
-      fullName: currentUser.fullName,
-      mobile: currentUser.mobile,
+      email: currentUser.email || '',
+      username: currentUser.username || '',
+      website_url: currentUser.website_url || '',
+      location: currentUser.location || '',
+      amazon_wishlist: currentUser.amazon_wishlist || '',
+      fullName: currentUser.fullName || '',
+      mobile: currentUser.mobile || '',
+      bio: currentUser.bio || '',
       photoType: '',
       photoUpload: false
     }
@@ -169,7 +214,8 @@ export default {
       this.photoType = ''
     },
     async saveUserData () {
-      const { currentUser, email, fullName, mobile, username } = this
+      const { currentUser, email, fullName, mobile,
+       username, bio, location, website_url, amazon_wishlist } = this
 
       this.$q.loading.show({
         message: 'Updating your data, please stand by...',
@@ -179,9 +225,13 @@ export default {
       try {
         await this.updateUserData({
           id: currentUser.id,
+          amazon_wishlist,
+          website_url,
+          location,
+          username,
+          bio,
           email,
           fullName,
-          username,
           mobile
         })
       } catch (err) {
