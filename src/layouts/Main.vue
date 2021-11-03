@@ -91,7 +91,7 @@
 
     <!-- right column search and suggestions -->
     <q-drawer
-      width=500
+      width=430
       show-if-above
       v-if="searchAndSuggestionsOpen"
       side="right"
