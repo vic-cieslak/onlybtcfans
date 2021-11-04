@@ -1,7 +1,9 @@
 const routes = [
   {
     path: '/',
+    redirect: '/feed',
     component: () => import('src/layouts/Main.vue'),
+    
     meta: {
       requiresAuth: true,
       toolbarTitle: 'HOME'
