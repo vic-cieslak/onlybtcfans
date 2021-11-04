@@ -12,7 +12,7 @@
     </div>
     <div class="profile-container ">
         <div class="profile-photo">
-          <div class="default-user-image" v-if="showDefaultPhoto()">
+          <div class="default-user-image text-left q-pl-lg" v-if="showDefaultPhoto()">
               <q-avatar
                 class='inline-flex'
                 round="round"
