@@ -34,9 +34,20 @@ yarn
 3. Create firestore database.
 
 
-## Export env variables.
+## Export Firebase env variables.
 
-Example what you will need: 
+
+You will find them in firebase console 
+
+
+
+https://user-images.githubusercontent.com/11517372/140612015-b3887efb-ca0e-4548-bb5b-d7233171c6c0.mp4
+
+
+
+
+Copy those into your terminal window:
+
 
 ```
 export DEV_API_KEY=AIzaSyDFu_nBypKQkSadsada110CrNfqST4bM
