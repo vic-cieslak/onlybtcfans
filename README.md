@@ -6,6 +6,10 @@ This is almost 1-1 clone of onlyfans UI recreated using vuejs and http://quasar.
 https://user-images.githubusercontent.com/11517372/140610252-fa875614-fc0a-47fd-a8dc-cec4b70b28b4.mp4
 
 
+
+https://user-images.githubusercontent.com/11517372/140610735-71c91e34-6dc8-4ba8-a6ce-eff10eaf17a1.mp4
+
+
 App is optimized for desktop and mobile. 
 
 Sign up with random email and password:
