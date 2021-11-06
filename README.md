@@ -34,20 +34,22 @@ yarn
 3. Create firestore database.
 
 
-## Add your firebase API keys to .env.
+## Export env variables.
 
 Example what you will need: 
 
 ```
-# DEV_DATA_BASE_URL=https://quasar-firebase-161e8.firebaseio.com
-DEV_API_KEY=AIzaSyDFu_nBypKQkSadsada110CrNfqST4bM
-DEV_AUTH_DOMAIN=casting-165e8.firebaseapp.com
-DEV_PROJECT_ID=casting-165e8
-DEV_STORAGE_BUCKET=casting-165e8.appspot.com
-DEV_MESSAGING_SENDER_ID=836951443352
-DEV_APP_ID=1:836933443352:web:0bd129c935bc9f0d886d
-DEV_MEASUREMENT_ID=G-5FAS5LZ9W5
+export DEV_API_KEY=AIzaSyDFu_nBypKQkSadsada110CrNfqST4bM
+export DEV_AUTH_DOMAIN=casting-165e8.firebaseapp.com
+export DEV_PROJECT_ID=casting-165e8
+export DEV_STORAGE_BUCKET=casting-165e8.appspot.com
+export DEV_MESSAGING_SENDER_ID=836951443352
+export DEV_APP_ID=1:836933443352:web:0bd129c935bc9f0d886d
+export DEV_MEASUREMENT_ID=G-5FAS5LZ9W5
 ```
+
+Copy those lines into your ~/.bashrc so you don't need to paste them everytime.   
+(yes, it should work differently)
 
 ### Start the app in development mode (hot-code reloading, error reporting, etc.)
 ```bash
