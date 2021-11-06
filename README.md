@@ -5,6 +5,7 @@ This is almost 1-1 clone of onlyfans UI recreated using vuejs and http://quasar.
 App is optimized for desktop and mobile. 
 
 Sign up with random email and password:
+
 Demo: https://onlybtcfans.netlify.app 
 
 Kanban board [current tasks and status]: https://decisive-indigo-970.notion.site/99d0600bad164704927ebcba0d77c91c?v=1e40dfb3336f4105bd42aa6953735779
