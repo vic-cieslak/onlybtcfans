@@ -30,7 +30,17 @@ yarn
 ## Create new project on firebase and go to console. Then:
 
 1. Enable auth for email, twitter and google (need to have tokens).
-2. Create storage with rules (for photos).
+2. Create storage with rules (for photos):
+```
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
+```
 3. Create firestore database.
 
 
