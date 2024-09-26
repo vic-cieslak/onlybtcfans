@@ -20,8 +20,6 @@ Kanban board [current tasks and status]: https://decisive-indigo-970.notion.site
 
 Key differences here are a firebase backend and bitcoin deposits/balances [WIP]
 
-<a href="https://imgflip.com/i/5lqzbp"><img src="https://i.imgflip.com/5lqzbp.jpg" title="made at imgflip.com"/></a><div><a href="https://imgflip.com/memegenerator">from Imgflip Meme Generator</a></div>
-
 ## Install the dependencies
 ```bash
 yarn
